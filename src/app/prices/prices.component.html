@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-lg-10">
+    <h2>{{ "price.title" | translate }}</h2>
+  </div>
+  <div class="col-lg-2 text-end actions">
+    <a routerLink="create" class="btn btn-primary"
+      ><em class="oi oi-plus"></em> {{ "price.create" | translate }}</a
+    >
+  </div>
+</div>
+<fieldset>
+  <legend id="form-results">
+    {{ "form.results" | translate }}
+  </legend>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">{{ "price.startDate" | translate }}</th>
+        <th scope="col">{{ "price.endDate" | translate }}</th>
+        <th scope="col">{{ "price.price" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let price of searchResult">
+        <th scope="row">{{ price.startDate }}</th>
+        <th scope="row">{{ price.endDate }}</th>
+        <th scope="row">{{ price.cuantity }}</th>
+      </tr>
+    </tbody>
+  </table>
+  <!--
+  <app-pagination
+    [resultObject]="resultObject"
+    (pageChanged)="showPage($event)"
+    (sizeChanged)="changeSize($event)"
+  ></app-pagination> -->
+</fieldset>

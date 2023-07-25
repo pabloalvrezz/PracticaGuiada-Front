@@ -1,0 +1,35 @@
+table.table tr .actions a {
+    visibility: hidden;
+    margin: 0 1px;
+}
+
+table.table tbody tr:hover a.btn, table.table tbody tr:hover button.btn {
+    visibility: visible;
+}
+
+table thead .sortable:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.table-users .actions {
+    width: 10em;
+}
+
+.table-products .actions{
+  width: 10em;
+}
+
+.sidebar-toggle {
+    position: fixed;
+    background: black;
+    padding: 10px;
+    border-bottom-right-radius: 5px;
+    z-index: 1;
+    cursor: pointer;
+    color: white;
+}
+
+.actions {
+    margin-top: 20px;
+}

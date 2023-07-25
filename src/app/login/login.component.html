@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h2>{{ "login.form.submit" | translate }}</h2>
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && login()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="mb-3">
+        <label for="username" class="form-label">{{
+          "login.form.user" | translate
+        }}</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && !username.valid }"
+          name="username"
+          [(ngModel)]="model.username"
+          #username="ngModel"
+          required
+        />
+        <div *ngIf="f.submitted && !username.valid" class="invalid-feedback">
+          {{ "form.validation.required" | translate }}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">{{
+          "login.form.password" | translate
+        }}</label>
+        <input
+          type="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && !password.valid }"
+          name="password"
+          [(ngModel)]="model.password"
+          #password="ngModel"
+          required
+        />
+        <div *ngIf="f.submitted && !password.valid" class="invalid-feedback">
+          {{ "form.validation.required" | translate }}
+        </div>
+      </div>
+
+      <button class="btn btn-primary">
+        {{ "login.form.submit" | translate }}
+      </button>
+    </form>
+  </div>
+</div>

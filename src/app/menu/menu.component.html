@@ -1,0 +1,9 @@
+<ul class="sidebar-nav">
+  <li *ngFor="let item of menuItems" class="sidebar-brand">
+    <a [routerLink]="[item.url]">{{ item.title | translate }}</a>
+  </li>
+
+  <li class="sidebar-brand">
+    <a (click)="logout()"> {{ "menu.logout" | translate }} </a>
+  </li>
+</ul>

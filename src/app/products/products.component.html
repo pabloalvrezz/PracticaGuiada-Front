@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-lg-10">
+    <h2>{{ "product.title" | translate }}</h2>
+  </div>
+  <div class="col-lg-2 text-end actions">
+    <a routerLink="create" class="btn btn-primary"
+      ><em class="oi oi-plus"></em> {{ "product.create" | translate }}</a
+    >
+  </div>
+</div>
+
+<fieldset>
+  <legend>
+    {{ "form.search-form" | translate }}
+  </legend>
+  <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
+    <div class="col-md-8">
+      <label for="name" class="form-label">{{
+        "product.name" | translate
+      }}</label>
+      <div class="input-group">
+        <span class="input-group-text" id="name-addon"></span>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          placeholder="{{ 'product.name' | translate }}"
+          aria-describedby="name-addon"
+          [(ngModel)]="findRequest.filter.name"
+          #name="ngModel"
+        />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="stock" class="form-label">{{
+        "product.stock" | translate
+      }}</label>
+      <input
+        type="text"
+        class="form-control"
+        name="stock"
+        placeholder="{{ 'product.stock' | translate }}"
+        [(ngModel)]="findRequest.filter.stock"
+        #stock="ngModel"
+      />
+    </div>
+
+    <div class="form-group">
+      <div class="offset-sm-2 col-sm-10 text-end">
+        <button type="submit" class="btn btn-outline-primary">
+          {{ "form.search" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</fieldset>
+<fieldset>
+  <legend id="form-results">
+    {{ "form.results" | translate }}
+  </legend>
+
+  <table
+    class="table table-products table-hover"
+    aria-describedby="form-results"
+  >
+    <thead>
+      <tr>
+        <th id="productname" class="sortable" (click)="sort('name')">
+          {{ "product.name" | translate }}
+        </th>
+        <th id="productStock" class="sortable">
+          {{ "product.stock" | translate }}
+        </th>
+        <th id="productPrice" class="sortable">
+          {{ "product.price" | translate }}
+        </th>
+        <th id="productEnablled" class="sortable">
+          {{ "product.enabled" | translate }}
+        </th>
+        <th id="productActions" class="sortable">
+          {{ "product.actions" | translate }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of searchResult">
+        <td headers="productprice">{{ product.name }}</td>
+        <td headers="productStock">{{ product.stock }}</td>
+        <td headers="productStock">{{ product.price?.cuantity }}</td>
+        <td headers="productEnabled">{{ product.enabled }}</td>
+        <td headers="tableActions" class="actions">
+          <a class="btn btn-light" [routerLink]="['.', product.id]">
+            <em class="oi oi-pencil"></em>
+          </a>
+          <a
+            class="btn btn-light"
+            (click)="remove(product)"
+            href="javascript:;"
+          >
+            <em
+              class="oi"
+              [ngClass]="{
+                'oi-trash': product.enabled,
+                'oi-check': !product.enabled
+              }"
+            ></em>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-pagination
+    [resultObject]="resultObject"
+    (pageChanged)="showPage($event)"
+    (sizeChanged)="changeSize($event)"
+  ></app-pagination>
+</fieldset>

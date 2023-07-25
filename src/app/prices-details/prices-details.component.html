@@ -1,0 +1,107 @@
+<fieldset>
+  <legend *ngIf="!createMode">
+    {{ "price.edit-price-title" | translate : price }}
+  </legend>
+  <legend *ngIf="createMode">
+    {{ "price.create-price-title" | translate }}
+  </legend>
+
+  <form
+    class="row g-3"
+    description="form"
+    (ngSubmit)="(f.form.valid)"
+    #f="ngForm"
+    autocomplete="false"
+    novalidate
+  >
+    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+    <input
+      style="display: none"
+      type="text"
+      description="fakeproductdescriptionremembered"
+    />
+    <input
+      style="display: none"
+      type="password"
+      description="fakepasswordremembered"
+    />
+    <div class="col-md-12">
+      <label for="startDate" class="form-label">{{
+        "price.startDate" | translate
+      }}</label>
+      <input
+        type="date"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.submitted && !startDate.valid }"
+        id="startDate"
+        description="startDate"
+        required
+        placeholder="{{ 'price.startDate' | translate }}"
+        [(ngModel)]="price.startDate"
+        #startDate="ngModel"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <div *ngIf="f.submitted && !startDate.valid" class="invalid-feedback">
+        {{ "form.validation.required" | translate }}
+      </div>
+      <div class="col-md-12">
+        <label for="endDate" class="form-label">{{
+          "price.endDate" | translate
+        }}</label>
+        <input
+          type="date"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && !endDate.valid }"
+          id="endDate"
+          description="endDate"
+          required
+          placeholder="{{ 'price.endDate' | translate }}"
+          [(ngModel)]="price.endDate"
+          #endDate="ngModel"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <div *ngIf="f.submitted && !endDate.valid" class="invalid-feedback">
+          {{ "form.validation.required" | translate }}
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="cuantity" class="form-label">{{
+          "price.cuantity" | translate
+        }}</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && !cuantity.valid }"
+          id="cuantity"
+          description="cuantity"
+          required
+          placeholder="{{ 'price.cuantity' | translate }}"
+          [(ngModel)]="price.cuantity"
+          #cuantity="ngModel"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <div *ngIf="f.submitted && !cuantity.valid" class="invalid-feedback">
+          {{ "form.validation.required" | translate }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cuantity" class="form-label">{{
+          "price.product" | translate
+        }}</label>
+        <select class="form-control form-control-m">
+          <option *ngFor="let product of searchResult">
+            {{ product.description }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a routerLink=".." class="btn btn-outline-primary">
+        {{ "form.cancel" | translate }}
+      </a>
+      <button type="submit" class="btn btn-primary ml-2">
+        {{ "form.save" | translate }}
+      </button>
+    </div>
+  </form>
+</fieldset>

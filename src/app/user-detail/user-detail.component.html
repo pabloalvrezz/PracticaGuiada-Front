@@ -1,0 +1,155 @@
+<fieldset>
+  <legend *ngIf="!createMode">
+    {{ "user.edit-user-title" | translate : user }}
+  </legend>
+  <legend *ngIf="createMode">
+    {{ "user.create-user-title" | translate }}
+  </legend>
+
+  <form
+    class="row g-3"
+    name="form"
+    (ngSubmit)="f.form.valid && save()"
+    #f="ngForm"
+    autocomplete="false"
+    novalidate
+  >
+    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+    <input style="display: none" type="text" name="fakeusernameremembered" />
+    <input
+      style="display: none"
+      type="password"
+      name="fakepasswordremembered"
+    />
+
+    <div class="col-md-8">
+      <label for="name" class="form-label">{{ "user.name" | translate }}</label>
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.submitted && !name.valid }"
+        id="name"
+        name="name"
+        required
+        placeholder="{{ 'user.name' | translate }}"
+        [(ngModel)]="user.name"
+        #name="ngModel"
+      />
+      <div *ngIf="f.submitted && !name.valid" class="invalid-feedback">
+        {{ "form.validation.required" | translate }}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="email" class="form-label">{{
+        "user.email" | translate
+      }}</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend3">@</span>
+        </div>
+        <input
+          type="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && !email.valid }"
+          id="email"
+          name="email"
+          required
+          placeholder="{{ 'user.email' | translate }}"
+          [(ngModel)]="user.email"
+          #email="ngModel"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+        />
+        <div
+          *ngIf="f.submitted && !email.valid && email.errors?.['required']"
+          class="invalid-feedback"
+        >
+          {{ "form.validation.required" | translate }}
+        </div>
+        <div
+          *ngIf="f.submitted && !email.valid && email.errors?.['pattern']"
+          class="invalid-feedback"
+        >
+          {{ "form.validation.email" | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label for="address" class="form-label">{{
+        "user.address" | translate
+      }}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        name="address"
+        placeholder="{{ 'user.address' | translate }}"
+        [(ngModel)]="user.address"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="city" class="form-label">{{ "user.city" | translate }}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        name="city"
+        placeholder="{{ 'user.city' | translate }}"
+        [(ngModel)]="user.city"
+      />
+    </div>
+    <div class="col-md-6">
+      <label for="country" class="form-label">{{
+        "user.country" | translate
+      }}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="country"
+        name="country"
+        placeholder="{{ 'user.country' | translate }}"
+        [(ngModel)]="user.country"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="language" class="form-label">{{
+        "user.language" | translate
+      }}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="language"
+        name="language"
+        placeholder="{{ 'user.language' | translate }}"
+        [(ngModel)]="user.language"
+      />
+    </div>
+    <div class="col-md-6">
+      <label for="roles" class="form-label">{{
+        "user.roles" | translate
+      }}</label>
+      <ng-select
+        id="roles"
+        name="roles"
+        [multiple]="true"
+        [items]="roles"
+        [closeOnSelect]="true"
+        [searchable]="false"
+        placeholder="{{ 'user.roles' | translate }}"
+        [(ngModel)]="user.roles"
+      >
+      </ng-select>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a routerLink=".." class="btn btn-outline-primary">
+        {{ "form.cancel" | translate }}
+      </a>
+      <button type="submit" class="btn btn-primary ml-2">
+        {{ "form.save" | translate }}
+      </button>
+    </div>
+  </form>
+</fieldset>

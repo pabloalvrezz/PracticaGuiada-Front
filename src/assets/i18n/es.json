@@ -1,0 +1,95 @@
+{
+    "app" : {
+        "title" : "blankapp"
+    },
+    "toast" : {
+        "success" : "Éxito",
+        "error" : "Error",
+        "success-saving" : "El registro se ha guardado con éxito",
+        "error-saving" : "Ha sucedido un error al guardar el registro",
+        "error403": "Transgresión de permisos",
+        "error403-body": "Parece que no tiene permisos para realizar la operación seleccionada. Póngase en contacto con el administrador."
+    },
+    "form" : {
+        "submit": "Enviar",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "search": "Buscar",
+        "pagination": "Viendo filas {{min}} a {{max}} de {{total}}",
+        "pagination-next": "⟩",
+        "pagination-previous": "⟨",
+        "pagination-first": "«",
+        "pagination-last": "»",
+        "search-form": "Criterios de búsqueda",
+        "results": "Resultados",
+        "validation": {
+            "required": "Valor requerido",
+            "email": "No es un email válido",
+            "number":  "No es un valor numérico válido"
+        },
+        "select": "Selecciona ...",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "menu" : {
+        "home": "Inicio",
+        "users" : "Usuarios",
+        "products": "Productos",
+        "prices": "Precios",
+        "logout" : "Salir"
+    },
+    "login" : {
+        "form" : {
+            "user" : "Usuario",
+            "password" : "Contraseña",
+            "submit" : "Acceder"
+        },
+        "error": {
+            "invalid": "Credenciales no válidas",
+            "invalid-body": "El nombre de usuario y/o contraseña introducido no son correctos"
+        }
+    },
+    "user" : {
+        "id" : "ID",
+        "title" : "Usuarios",
+        "create" : "Crear usuario",
+        "selectRole" : "Seleccione un rol",
+        "roles" : "Roles",
+        "name": "Nombre",
+        "email": "Email",
+        "address": "Dirección",
+        "city": "Ciudad",
+        "country": "Pais",
+        "language": "Idioma",
+        "enabled": "Habilitado",
+        "username": "Nombre de usuario",
+        "password": "Contraseña",
+        "edit-user-title": "Editar usuario: {{name}}",
+        "create-user-title": "Crear nuevo usuario"
+    },
+    "product":{
+      "title": "Productos",
+      "create": "Crear producto",
+      "id": "Id",
+      "name": "Nombre",
+      "description": "Descripcion",
+      "enabled": "Disponible",
+      "stock": "Unidades",
+      "price": "Precio",
+      "create-product-title": "Crear nuevo producto",
+      "disponibility": "Disponibilidad",
+      "actions": "Acciones",
+      "edit-product-title": "Editar: {{description}}"
+    },
+    "price":{
+      "title": "Precios",
+      "create": "Crear Precio",
+      "startDate": "Fecha de inicio",
+      "endDate": "Fecha de fin",
+      "cuantity": "Precio",
+      "edit-price-title": "Editar precio",
+      "create-price-title": "Crear precio",
+      "product": "Producto asociado"
+    }
+
+}

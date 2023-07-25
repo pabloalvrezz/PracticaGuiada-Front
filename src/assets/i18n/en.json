@@ -1,0 +1,93 @@
+{
+    "app" : {
+        "title" : "blankapp"
+    },
+    "toast" : {
+        "success" : "Success",
+        "error" : "Error",
+        "success-saving" : "The item has been successfully saved",
+        "error-saving" : "An error ocured while saving the item",
+        "error403": "Permission violation",
+        "error403-body": "It seems that you don't have the necessary permissions to perform the selected operation. Contact an administrator if you need to solve this issue."
+    },
+    "form" : {
+        "submit": "Submit",
+        "save": "Save",
+        "cancel": "Cancel",
+        "search": "Search",
+        "pagination": "Displaying results {{min}} accross {{max}} of {{total}}",
+        "pagination-next": "⟩",
+        "pagination-previous": "⟨",
+        "pagination-first": "«",
+        "pagination-last": "»",
+        "search-form": "Search criteria",
+        "results": "Results",
+        "validation": {
+          "required": "Required input",
+          "email": "This is not a valid email",
+          "number":  "This is not a valid number"
+        },
+        "select": "Select ...",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "menu" : {
+        "home": "Welcome",
+        "users" : "Users",
+        "products":  "Products",
+        "prices": "Prices",
+        "logout" : "Log out"
+    },
+    "login" : {
+        "form" : {
+            "user" : "User",
+            "password" : "Password",
+            "submit" : "Log in"
+        },
+        "error": {
+            "invalid": "Invalid credentials",
+            "invalid-body": "The username and/or password provided are invalid"
+        }
+    },
+    "user" : {
+        "id" : "ID",
+        "title" : "Users",
+        "create" : "Create user",
+        "selectRole" : "Select a role",
+        "roles" : "Roles",
+        "name": "Name",
+        "email": "Email",
+        "address": "Address",
+        "city": "City",
+        "country": "Country",
+        "language": "Language",
+        "enabled": "Enabled",
+        "username": "Username",
+        "password": "Password",
+        "edit-user-title": "Edit user: {{name}}",
+        "create-user-title": "Create new user"
+    },
+     "product":{
+      "title": "Products",
+      "create": "Create product",
+      "id": "Id",
+      "name": "Name",
+      "description": "Descripction",
+      "enabled": "Avaible",
+      "stock": "Stock",
+      "price": "Price",
+      "create-product-title": "Create new product",
+      "edit-product-title": "Edit: {{description}}"
+    },
+   "price":{
+      "title": "Prices",
+      "create": "Create Price",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "cuantity": "Price",
+      "edit-price-title": "Edit price",
+      "create-price-title": "Create price",
+      "product": "Linked Product"
+    }
+
+}
