@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { AbstractService } from '../_helpers/abstract';
 import { FindRequest, Page } from '../_helpers/search';
 import { Observable, catchError } from 'rxjs';
@@ -20,8 +20,20 @@ export class PricesService extends AbstractService {
    * Metodo que se encargar de realizar la consulta de los precios
    */
   searchPrices(findRequest: FindRequest): Observable<Page<Prices>> {
+
+    // Filter params
+    let parameters = new HttpParams();
+    parameters = Helper.addParam(parameters, 'startDate', findRequest.filter.startDate);
+    parameters = Helper.addParam(parameters, 'endDate', findRequest.filter.endDate);
+    parameters = Helper.addParam(parameters, 'cuantity', findRequest.filter.cuantity);
+
+    // Pagination params
+    parameters = Helper.addPaginationParams(parameters, findRequest.pageRequest);
+
     return this.httpClient
-      .get<Page<Prices>>(Helper.getUrl('/prices/search'))
+      .get<Page<Prices>>(Helper.getUrl('/prices/search'), {
+        params: parameters
+      })
       .pipe(catchError(this.handleError));
   }
 

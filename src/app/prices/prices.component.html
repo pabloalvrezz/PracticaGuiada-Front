@@ -15,27 +15,39 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">{{ "price.startDate" | translate }}</th>
-        <th scope="col">{{ "price.endDate" | translate }}</th>
-        <th scope="col">{{ "price.cuantity" | translate }}</th>
-        <th scope="col">{{ "price.product" | translate }}</th>
-        <th scope="col">{{ "price.actions" | translate }}</th>
+        <th class="sortable" (click)="sort('startDate')">
+          {{ "price.startDate" | translate }}
+        </th>
+        <th class="sortable" (click)="sort('endDate')">
+          {{ "price.endDate" | translate }}
+        </th>
+        <th class="sortable" (click)="sort('cuantity')">
+          {{ "price.cuantity" | translate }}
+        </th>
+        <th class="sortable" (click)="sort('product')">
+          {{ "price.product" | translate }}
+        </th>
+        <th class="sortable">{{ "price.actions" | translate }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let price of searchResult">
-        <th scope="row">{{ price.startDate }}</th>
-        <th scope="row">{{ price.endDate }}</th>
-        <th scope="row">{{ price.cuantity }}</th>
-        <th scope="row">
+        <th>{{ price.startDate }}</th>
+        <th>{{ price.endDate }}</th>
+        <th>{{ price.cuantity }}</th>
+        <th>
           {{
             price.product?.description === null
               ? "No hay precio asignado"
               : price.product.description
           }}
         </th>
-        <th scope="row">
-          <a class="btn btn-dark" [routerLink]="['.', price.id]">
+        <th headers="tableActions" class="actions">
+          <a
+            class="btn btn-light"
+            [routerLink]="['.', price.id]"
+            href="javascript:;"
+          >
             <em class="oi oi-pencil"></em>
           </a>
         </th>

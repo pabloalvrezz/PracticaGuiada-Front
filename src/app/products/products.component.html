@@ -65,13 +65,13 @@
         <th id="productname" class="sortable" (click)="sort('name')">
           {{ "product.name" | translate }}
         </th>
-        <th id="productStock" class="sortable">
+        <th id="productStock" class="sortable" (click)="sort('stock')">
           {{ "product.stock" | translate }}
         </th>
-        <th id="productEnablled" class="sortable">
+        <th id="productEnablled" class="sortable" (click)="sort('enabled')">
           {{ "product.enabled" | translate }}
         </th>
-        <th id="productActions" class="sortable">
+        <th id="productActions" class="sortable" (click)="sort('price')">
           {{ "product.price" | translate }}
         </th>
         <th id="productActions" class="sortable">
@@ -84,11 +84,11 @@
         <td headers="productprice">{{ product.name }}</td>
         <td headers="productStock">{{ product.stock }}</td>
         <td headers="productEnabled">{{ product.enabled }}</td>
-        <td headers="productEnabled">
+        <td headers="productCuantity">
           {{
-            product.prices?.cuantity === null
+            product.price?.cuantity === null
               ? "Todavía no existe precio"
-              : product.prices?.cuantity
+              : product.price?.cuantity
           }}
         </td>
         <td headers="tableActions" class="actions">

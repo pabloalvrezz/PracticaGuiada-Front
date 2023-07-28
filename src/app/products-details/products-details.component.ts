@@ -48,7 +48,7 @@ export class ProductsDetailsComponent implements OnInit {
   /**
    * Datos del precio actual del producto
    */
-  price: Prices = new Prices();
+  prices: Prices = new Prices();
 
   constructor(private router: Router,
     private translate: TranslateService,
@@ -61,7 +61,7 @@ export class ProductsDetailsComponent implements OnInit {
     this.description = '';
     this.stock = 0;
     this.enabled = true;
-    this.price.cuantity = 0;
+    this.prices.cuantity = 0;
 
     this.route.params.subscribe({
       next: (params: Params) => {

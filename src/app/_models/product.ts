@@ -33,5 +33,5 @@ export class Product {
   /**
    * Objeto de tipo precio
    */
-  prices?: Prices
+  price?: Prices
 }

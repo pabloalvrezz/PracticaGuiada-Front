@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 import { Direction, FindRequest, Order, Page, PaginatedSearchComponent } from '../_helpers/search';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
+import { PricesService } from '../_services/prices.service';
+import { Prices } from '../_models/price';
 
 @Component({
   selector: 'app-products',
@@ -20,7 +22,8 @@ export class ProductsComponent extends PaginatedSearchComponent<Product> {
   constructor(router: Router,
     translate: TranslateService,
     toastr: ToastrService,
-    private productService: ProductService) { super(router, translate, toastr); }
+    private productService: ProductService
+  ) { super(router, translate, toastr); }
 
   protected override findInternal(findRequest: FindRequest): Observable<Page<Product>> {
     return this.productService.searchProducts(findRequest);
