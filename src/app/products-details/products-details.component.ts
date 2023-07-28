@@ -5,7 +5,7 @@ import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
-import { Price } from '../_models/price';
+import { Prices } from '../_models/price';
 
 @Component({
   selector: 'app-products-details',
@@ -48,7 +48,7 @@ export class ProductsDetailsComponent implements OnInit {
   /**
    * Datos del precio actual del producto
    */
-  cuantity: Price = new Price();
+  price: Prices = new Prices();
 
   constructor(private router: Router,
     private translate: TranslateService,
@@ -61,7 +61,7 @@ export class ProductsDetailsComponent implements OnInit {
     this.description = '';
     this.stock = 0;
     this.enabled = true;
-    this.cuantity.cuantity = 0;
+    this.price.cuantity = 0;
 
     this.route.params.subscribe({
       next: (params: Params) => {

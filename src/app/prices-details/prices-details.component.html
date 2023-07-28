@@ -8,23 +8,12 @@
 
   <form
     class="row g-3"
-    description="form"
-    (ngSubmit)="(f.form.valid)"
+    name="form"
+    (ngSubmit)="f.form.valid && save()"
     #f="ngForm"
     autocomplete="false"
     novalidate
   >
-    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
-    <input
-      style="display: none"
-      type="text"
-      description="fakeproductdescriptionremembered"
-    />
-    <input
-      style="display: none"
-      type="password"
-      description="fakepasswordremembered"
-    />
     <div class="col-md-12">
       <label for="startDate" class="form-label">{{
         "price.startDate" | translate
@@ -34,7 +23,7 @@
         class="form-control"
         [ngClass]="{ 'is-invalid': f.submitted && !startDate.valid }"
         id="startDate"
-        description="startDate"
+        name="startDate"
         required
         placeholder="{{ 'price.startDate' | translate }}"
         [(ngModel)]="price.startDate"
@@ -53,7 +42,7 @@
           class="form-control"
           [ngClass]="{ 'is-invalid': f.submitted && !endDate.valid }"
           id="endDate"
-          description="endDate"
+          name="endDate"
           required
           placeholder="{{ 'price.endDate' | translate }}"
           [(ngModel)]="price.endDate"
@@ -73,7 +62,7 @@
           class="form-control"
           [ngClass]="{ 'is-invalid': f.submitted && !cuantity.valid }"
           id="cuantity"
-          description="cuantity"
+          name="cuantity"
           required
           placeholder="{{ 'price.cuantity' | translate }}"
           [(ngModel)]="price.cuantity"
@@ -84,15 +73,24 @@
           {{ "form.validation.required" | translate }}
         </div>
       </div>
-      <div class="form-group">
-        <label for="cuantity" class="form-label">{{
+      <!-- Selector de objetos para el precio actual -->
+      <div class="col-md-6">
+        <label for="roles" class="form-label">{{
           "price.product" | translate
         }}</label>
-        <select class="form-control form-control-m">
-          <option *ngFor="let product of searchResult">
+        <select
+          name="selectionOfProducts"
+          class="form-control"
+          [(ngModel)]="seleccionado"
+          (onmouseout)="save()"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <!-- Mostramos todos los productos disponibles -->
+          <option *ngFor="let product of searchResult" [ngValue]="product">
             {{ product.description }}
           </option>
         </select>
+        <p>Producto seleccionado :{{ seleccionado?.description }}</p>
       </div>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

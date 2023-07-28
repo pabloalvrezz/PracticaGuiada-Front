@@ -61,21 +61,6 @@
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-
-    <div class="col-md-6">
-      <label for="price" class="form-label">{{
-        "product.price" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="price"
-        description="price"
-        placeholder="{{ 'product.price' | translate }}"
-        [(ngModel)]="product.price.cuantity"
-        [ngModelOptions]="{ standalone: true }"
-      />
-    </div>
     <div class="col-md-6">
       <label for="stock" class="form-label">{{
         "product.stock" | translate
@@ -84,14 +69,14 @@
         type="text"
         class="form-control"
         id="stock"
-        description="stock"
+        name="stock"
         placeholder="{{ 'product.stock' | translate }}"
         [(ngModel)]="product.stock"
         #stock="ngModel"
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-    <div class="row-md-6">
+    <div class="col-md-6">
       <label for="stock" class="form-label">{{
         "product.description" | translate
       }}</label>
@@ -99,7 +84,7 @@
         type="text"
         class="form-control"
         id="description"
-        description="stock"
+        name="description"
         placeholder="{{ 'product.description' | translate }}"
         [(ngModel)]="product.description"
         #description="ngModel"

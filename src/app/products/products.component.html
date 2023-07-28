@@ -59,10 +59,7 @@
     {{ "form.results" | translate }}
   </legend>
 
-  <table
-    class="table table-products table-hover"
-    aria-describedby="form-results"
-  >
+  <table class="table table-striped">
     <thead>
       <tr>
         <th id="productname" class="sortable" (click)="sort('name')">
@@ -71,11 +68,11 @@
         <th id="productStock" class="sortable">
           {{ "product.stock" | translate }}
         </th>
-        <th id="productPrice" class="sortable">
-          {{ "product.price" | translate }}
-        </th>
         <th id="productEnablled" class="sortable">
           {{ "product.enabled" | translate }}
+        </th>
+        <th id="productActions" class="sortable">
+          {{ "product.price" | translate }}
         </th>
         <th id="productActions" class="sortable">
           {{ "product.actions" | translate }}
@@ -86,8 +83,14 @@
       <tr *ngFor="let product of searchResult">
         <td headers="productprice">{{ product.name }}</td>
         <td headers="productStock">{{ product.stock }}</td>
-        <td headers="productStock">{{ product.price?.cuantity }}</td>
         <td headers="productEnabled">{{ product.enabled }}</td>
+        <td headers="productEnabled">
+          {{
+            product.prices?.cuantity === null
+              ? "Todavía no existe precio"
+              : product.prices?.cuantity
+          }}
+        </td>
         <td headers="tableActions" class="actions">
           <a class="btn btn-light" [routerLink]="['.', product.id]">
             <em class="oi oi-pencil"></em>

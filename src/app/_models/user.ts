@@ -75,8 +75,5 @@ export class Authority {
   /**
    * Nombre del rol.
    */
-  /**
-   * Nombre del rol.
-   */
   authority!: string;
 }

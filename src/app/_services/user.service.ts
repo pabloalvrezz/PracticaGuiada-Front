@@ -37,10 +37,6 @@ export class UserService extends AbstractService {
     // Pagination params
     parameters = Helper.addPaginationParams(parameters, findRequest.pageRequest);
 
-
-    console.log("Usuarios")
-    console.log(findRequest.pageRequest.size)
-
     return this.httpClient
       .get<Page<User>>(Helper.getUrl('/user/search'), {
         params: parameters

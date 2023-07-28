@@ -1,12 +1,15 @@
+
 import { Component } from '@angular/core';
-import { Direction, FindRequest, Order, Page, PaginatedSearchComponent } from '../_helpers/search';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ToastrService } from 'ngx-toastr';
-import { ProductService } from '../_services/product.service';
+
+import { Observable } from 'rxjs';
+
+import { Direction, FindRequest, Order, Page, PaginatedSearchComponent } from '../_helpers/search';
 import { Product } from '../_models/product';
-import { Price } from '../_models/price';
+import { ProductService } from '../_services/product.service';
 
 @Component({
   selector: 'app-products',

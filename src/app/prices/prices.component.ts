@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { Price } from '../_models/price';
-import { FindRequest, Order, Page, PaginatedSearchComponent } from '../_helpers/search';
+import { Prices } from '../_models/price';
+import { Direction, FindRequest, Order, Page, PaginatedSearchComponent } from '../_helpers/search';
 import { Observable } from 'rxjs';
 import { PricesService } from '../_services/prices.service';
 
@@ -13,7 +13,7 @@ import { PricesService } from '../_services/prices.service';
   styles: [
   ]
 })
-export class PricesComponent extends PaginatedSearchComponent<Price> {
+export class PricesComponent extends PaginatedSearchComponent<Prices> {
 
   constructor(router: Router,
     translate: TranslateService,
@@ -22,14 +22,17 @@ export class PricesComponent extends PaginatedSearchComponent<Price> {
     super(router, translate, toastr);
   }
 
-  protected override findInternal(findRequest: FindRequest): Observable<Page<Price>> {
+  protected override findInternal(findRequest: FindRequest): Observable<Page<Prices>> {
     return this.pricesService.searchPrices(findRequest)
   }
-  protected override removeInternal(entity: Price): Observable<{} | Response> {
+  protected override removeInternal(entity: Prices): Observable<{} | Response> {
     throw new Error('Method not implemented.');
   }
   protected override getDefaultOrder(): Order {
-    throw new Error('Method not implemented.');
+    return {
+      property: 'id',
+      direction: Direction.ASC,
+    }
   }
 
 }

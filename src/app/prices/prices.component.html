@@ -17,7 +17,9 @@
       <tr>
         <th scope="col">{{ "price.startDate" | translate }}</th>
         <th scope="col">{{ "price.endDate" | translate }}</th>
-        <th scope="col">{{ "price.price" | translate }}</th>
+        <th scope="col">{{ "price.cuantity" | translate }}</th>
+        <th scope="col">{{ "price.product" | translate }}</th>
+        <th scope="col">{{ "price.actions" | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -25,13 +27,25 @@
         <th scope="row">{{ price.startDate }}</th>
         <th scope="row">{{ price.endDate }}</th>
         <th scope="row">{{ price.cuantity }}</th>
+        <th scope="row">
+          {{
+            price.product?.description === null
+              ? "No hay precio asignado"
+              : price.product.description
+          }}
+        </th>
+        <th scope="row">
+          <a class="btn btn-dark" [routerLink]="['.', price.id]">
+            <em class="oi oi-pencil"></em>
+          </a>
+        </th>
       </tr>
     </tbody>
   </table>
-  <!--
+
   <app-pagination
     [resultObject]="resultObject"
     (pageChanged)="showPage($event)"
     (sizeChanged)="changeSize($event)"
-  ></app-pagination> -->
+  ></app-pagination>
 </fieldset>

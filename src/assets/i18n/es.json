@@ -89,7 +89,9 @@
       "cuantity": "Precio",
       "edit-price-title": "Editar precio",
       "create-price-title": "Crear precio",
-      "product": "Producto asociado"
+      "product": "Producto asociado",
+      "asociated": "Productos asociados al precio:",
+      "actions": "Acciones"
     }
 
 }

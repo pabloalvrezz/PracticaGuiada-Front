@@ -1,4 +1,6 @@
-export class Price {
+import { Product } from "./product";
+
+export class Prices {
 
   id!: number;
 
@@ -7,4 +9,6 @@ export class Price {
   endDate!: Date;
 
   cuantity!: number;
+
+  product?: Product;
 }

@@ -77,13 +77,22 @@ const secureRoutes: Routes = [
     path: 'prices',
     component: PricesComponent
   },
+
   /**
-   *Creacopm delos precios
+   *Creacion de los precios
    */
   {
     path: 'prices/create',
     component: PricesDetailsComponent,
   },
+
+  /**
+   * Detalles de los precios
+   */
+  {
+    path: 'prices/:id',
+    component: PricesDetailsComponent,
+  }
 ];
 
 const routes: Routes = [

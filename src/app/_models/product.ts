@@ -2,7 +2,7 @@
  * Define los datos de un producto
  */
 
-import { Price } from "./price";
+import { Prices } from "./price";
 
 export class Product {
   /**
@@ -33,5 +33,5 @@ export class Product {
   /**
    * Objeto de tipo precio
    */
-  price: Price = new Price();
+  prices?: Prices
 }
