@@ -86,11 +86,10 @@
           [ngModelOptions]="{ standalone: true }"
         >
           <!-- Mostramos todos los productos disponibles -->
-          <option *ngFor="let product of searchResult" [ngValue]="product">
-            {{ product.description }}
+          <option *ngFor="let avaibles of searchResult" [ngValue]="avaibles">
+            {{ avaibles.description }}
           </option>
         </select>
-        <p>Producto seleccionado :{{ seleccionado?.description }}</p>
       </div>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

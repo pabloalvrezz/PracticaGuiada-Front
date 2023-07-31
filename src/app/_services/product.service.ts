@@ -22,7 +22,6 @@ export class ProductService extends AbstractService {
    * Realza la consulta de productos
    */
   searchProducts(findRequest: FindRequest): Observable<Page<Product>> {
-
     // Filter params
     let parameters = new HttpParams();
     parameters = Helper.addParam(parameters, 'name', findRequest.filter.name);
@@ -41,12 +40,21 @@ export class ProductService extends AbstractService {
   }
 
   /**
+   * Realiza la consulta de productos que no tiene asignado ningun precio
+   */
+  findAvaible(findRequest: FindRequest): Observable<Page<Product>> {
+    return this.httpClient.get<Page<Product>>(Helper.getUrl('/product/avaibles'))
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  /**
    *Guarda los datos del producto
    *@param product el producto
    *@returns Observable con el resultado
    */
   save(product: Product): Observable<Product> {
-
     return this.httpClient
       .post<Product>(Helper.getUrl('/product'), product)
       .pipe(
@@ -55,7 +63,6 @@ export class ProductService extends AbstractService {
   }
 
   update(product: Product): Observable<Product> {
-
     return this.httpClient
       .put<Product>(Helper.getUrl('/product'), product)
       .pipe(
@@ -86,6 +93,7 @@ export class ProductService extends AbstractService {
    * Obtiene los datos del producto
    */
   get(id: number): Observable<Product> {
+
     return this.httpClient
       .get<Product>(Helper.getUrl('/product/' + id))
       .pipe(

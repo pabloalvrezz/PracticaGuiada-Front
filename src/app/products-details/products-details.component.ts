@@ -46,6 +46,11 @@ export class ProductsDetailsComponent implements OnInit {
   enabled: boolean | null = true;
 
   /**
+   *Productos que no tiene asignado ningun precio
+   */
+  productosDisponibles: Product[] = [];
+
+  /**
    * Datos del precio actual del producto
    */
   prices: Prices = new Prices();
