@@ -9,9 +9,11 @@
   </div>
 </div>
 <fieldset>
+  
   <legend id="form-results">
     {{ "form.results" | translate }}
   </legend>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -25,7 +27,7 @@
           {{ "price.cuantity" | translate }}
         </th>
         <th class="sortable" (click)="sort('product')">
-          {{ "price.product" | translate }}
+          {{ "price.asociated" | translate }}
         </th>
         <th class="sortable">{{ "price.actions" | translate }}</th>
       </tr>
@@ -36,11 +38,7 @@
         <th>{{ price.endDate }}</th>
         <th>{{ price.cuantity }}</th>
         <th>
-          {{
-            price.product?.description === null
-              ? "No hay precio asignado"
-              : price.product.description
-          }}
+         {{price.product?.description}}
         </th>
         <th headers="tableActions" class="actions">
           <a

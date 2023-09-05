@@ -26,7 +26,7 @@ export class ProductsComponent extends PaginatedSearchComponent<Product> {
   ) { super(router, translate, toastr); }
 
   protected override findInternal(findRequest: FindRequest): Observable<Page<Product>> {
-    return this.productService.findAvaible(findRequest);
+    return this.productService.searchProducts(findRequest);
   }
 
   protected override removeInternal(entity: Product): Observable<{} | Response> {
@@ -40,5 +40,5 @@ export class ProductsComponent extends PaginatedSearchComponent<Product> {
     }
   }
 
-
+  
 }

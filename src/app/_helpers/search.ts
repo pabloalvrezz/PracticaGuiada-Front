@@ -215,16 +215,12 @@ export abstract class PaginatedSearchComponent<T> implements AfterContentInit {
    * Petición de búsqueda.
    */
   findRequest = new FindRequest();
-  /**
-   * Datos de la búsqueda.
-   */
+  
   /**
    * Datos de la búsqueda.
    */
   searchResult!: any[];
-  /**
-   * Datos de la última página procesada.
-   */
+
   /**
    * Datos de la última página procesada.
    */
@@ -235,6 +231,7 @@ export abstract class PaginatedSearchComponent<T> implements AfterContentInit {
     private toastr: ToastrService) { }
 
   ngAfterContentInit(): void {
+
     const searchFormJson = localStorage.getItem('searchform-' + this.router.url);
     const lastSearch: FindRequest = searchFormJson === null ? new FindRequest() : JSON.parse(searchFormJson);
 

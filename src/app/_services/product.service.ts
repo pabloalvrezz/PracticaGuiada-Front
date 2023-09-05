@@ -43,7 +43,7 @@ export class ProductService extends AbstractService {
    * Realiza la consulta de productos que no tiene asignado ningun precio
    */
   findAvaible(findRequest: FindRequest): Observable<Page<Product>> {
-    return this.httpClient.get<Page<Product>>(Helper.getUrl('/product/avaibles'))
+    return this.httpClient.get<Page<Product>>(Helper.getUrl('/product/search'))
       .pipe(
         catchError(this.handleError)
       );

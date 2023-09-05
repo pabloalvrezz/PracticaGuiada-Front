@@ -14,12 +14,11 @@
     {{ "form.search-form" | translate }}
   </legend>
   <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
-    <div class="col-md-8">
+    <div class="col-md-6">
       <label for="name" class="form-label">{{
         "product.name" | translate
       }}</label>
       <div class="input-group">
-        <span class="input-group-text" id="name-addon"></span>
         <input
           type="text"
           class="form-control"
@@ -31,7 +30,7 @@
         />
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <label for="stock" class="form-label">{{
         "product.stock" | translate
       }}</label>
@@ -86,9 +85,9 @@
         <td headers="productEnabled">{{ product.enabled }}</td>
         <td headers="productCuantity">
           {{
-            product.price?.cuantity === null
-              ? "Todavía no existe precio"
-              : product.price?.cuantity
+            product.activePrice === 0
+            ? "Todavía no existe precio"
+            : product.activePrice
           }}
         </td>
         <td headers="tableActions" class="actions">

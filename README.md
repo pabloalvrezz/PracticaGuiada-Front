@@ -14,7 +14,7 @@ Dentro del proyecto base se integran las siguientes características:
 
 ## Documentación
 
-- https://corpus.izertis.com/arquitectura/nodejs/angular/arquetipos/1-2-0
+- https://corpus.izertis.com/arquitectura/nodejs/angular/arquetipo944s/1-2-0
 
 ## Ejecución de tests
 
