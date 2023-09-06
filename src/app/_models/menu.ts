@@ -50,4 +50,10 @@ export const MENU_ITEMS: MenuItem[] = [
     url: '/main/users'
   },
 
+  {
+    title: 'menu.search',
+    icon: '',
+    url: '/main/search'
+  },
+
 ];

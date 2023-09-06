@@ -36,7 +36,8 @@
         "users" : "Usuarios",
         "products": "Productos",
         "prices": "Precios",
-        "logout" : "Salir"
+        "logout" : "Salir",
+        "search": "Buscador"
     },
     "login" : {
         "form" : {
@@ -92,6 +93,12 @@
       "product": "Productos disponibles",
       "asociated": "Productos asociados:",
       "actions": "Acciones"
+    },
+    "search":{
+        "title": "Tienda Izertis ",
+        "details": "Detalles",
+        "add": "Comprar"
+
     }
 
 }

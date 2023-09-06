@@ -14,6 +14,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+
 // -------------- Services --------------
 import { LoginService } from './_services/login.service';
 import { MenuService } from './_services/menu.service';
@@ -28,6 +30,9 @@ import { MenuComponent } from './menu/menu.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { PricesComponent } from './prices/prices.component';
+import { PricesDetailsComponent } from './prices-details/prices-details.component';
+import { SearcherComponent } from './searcher/searcher.component'
 
 // -------------- Guards --------------
 // import { AuthGuard } from './_guards/auth.guard';
@@ -37,8 +42,6 @@ import { OAuthInterceptor } from './_interceptors/oauth-interceptor';
 import { ProductsComponent } from './products/products.component';
 import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { TokenizedInterceptor } from './_interceptors/tokenized-interceptor';
-import { PricesComponent } from './prices/prices.component';
-import { PricesDetailsComponent } from './prices-details/prices-details.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import { PricesDetailsComponent } from './prices-details/prices-details.componen
     ProductsDetailsComponent,
     PricesComponent,
     PricesDetailsComponent,
+    SearcherComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,7 @@ import { PricesDetailsComponent } from './prices-details/prices-details.componen
     NgProgressRouterModule,
     NgSelectModule,
     ReactiveFormsModule,
+    InfiniteScrollModule,
   ],
   providers: [
     // AuthGuard,

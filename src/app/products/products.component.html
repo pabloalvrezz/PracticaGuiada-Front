@@ -87,8 +87,8 @@
           {{
             product.activePrice === 0
             ? "Todavía no existe precio"
-            : product.activePrice
-          }}
+            : product.activePrice + '$'
+          }} 
         </td>
         <td headers="tableActions" class="actions">
           <a class="btn btn-light" [routerLink]="['.', product.id]">

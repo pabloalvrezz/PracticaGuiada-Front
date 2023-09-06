@@ -36,7 +36,8 @@
         "users" : "Users",
         "products":  "Products",
         "prices": "Prices",
-        "logout" : "Log out"
+        "logout" : "Log out",
+        "search": "Searcher"
     },
     "login" : {
         "form" : {
@@ -90,6 +91,11 @@
       "product": "Avaible Products",
       "asociated": "Asociated products:",
       "actions": "Actions"
+    },
+    "search":{
+        "title": "Izertis Shop",
+        "details": "Details",
+        "add": "Buy"
     }
 
 }

@@ -12,6 +12,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { PricesComponent } from './prices/prices.component';
 import { PricesDetailsComponent } from './prices-details/prices-details.component';
+import { SearcherComponent } from './searcher/searcher.component';
 
 /**
  * Rutas securizadas
@@ -92,7 +93,16 @@ const secureRoutes: Routes = [
   {
     path: 'prices/:id',
     component: PricesDetailsComponent,
+  },
+
+  /**
+   * Buscador de productos
+   */
+  {
+    path: 'search',
+    component: SearcherComponent
   }
+    
 ];
 
 const routes: Routes = [
