@@ -112,7 +112,6 @@
       }
     }
   },
-  "defaultProject": "front-angular-baseapp",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }

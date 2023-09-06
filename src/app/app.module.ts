@@ -13,9 +13,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-
-import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-
 // -------------- Services --------------
 import { LoginService } from './_services/login.service';
 import { MenuService } from './_services/menu.service';
@@ -79,7 +76,6 @@ import { TokenizedInterceptor } from './_interceptors/tokenized-interceptor';
     NgProgressRouterModule,
     NgSelectModule,
     ReactiveFormsModule,
-    InfiniteScrollModule,
   ],
   providers: [
     // AuthGuard,
