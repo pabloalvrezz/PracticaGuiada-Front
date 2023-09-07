@@ -10,16 +10,15 @@ import { Helper } from '../_helpers/utils';
 import { Product } from '../_models/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService extends AbstractService {
-
   constructor(private httpClient: HttpClient) {
     super();
   }
 
   /**
-   * Realza la consulta de productos
+   * Realiza la consulta de productos paginados
    */
   searchProducts(findRequest: FindRequest): Observable<Page<Product>> {
     // Filter params
@@ -28,25 +27,31 @@ export class ProductService extends AbstractService {
     parameters = Helper.addParam(parameters, 'stock', findRequest.filter.stock);
 
     // Pagination params
-    parameters = Helper.addPaginationParams(parameters, findRequest.pageRequest);
+    parameters = Helper.addPaginationParams(
+      parameters,
+      findRequest.pageRequest
+    );
 
     return this.httpClient
       .get<Page<Product>>(Helper.getUrl('/product/search'), {
-        params: parameters
+        params: parameters,
       })
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
-
+  /**
+   * Realiza la consulta de todos los productos
+   */
+  searchAllProducts(findRequest: FindRequest): Observable<Page<Product>> {
+    return this.httpClient
+    .get<Page<Product>>(Helper.getUrl('/product/list')).pipe(catchError(this.handleError))
+  }
   /**
    * Realiza la consulta de productos que no tiene asignado ningun precio
    */
   findAvaible(findRequest: FindRequest): Observable<Page<Product>> {
-    return this.httpClient.get<Page<Product>>(Helper.getUrl('/product/search'))
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.httpClient
+      .get<Page<Product>>(Helper.getUrl('/product/search'))
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -57,49 +62,44 @@ export class ProductService extends AbstractService {
   save(product: Product): Observable<Product> {
     return this.httpClient
       .post<Product>(Helper.getUrl('/product'), product)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   update(product: Product): Observable<Product> {
     return this.httpClient
       .put<Product>(Helper.getUrl('/product'), product)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   /**
-    * Realiza la activación o desactivación de un producto.
-    * @param product Datos del producto.
-    * @returns Observable con el resultado de la operación.
-    */
+   * Realiza la activación o desactivación de un producto.
+   * @param product Datos del producto.
+   * @returns Observable con el resultado de la operación.
+   */
   toggle(product: Product): Observable<any> {
     let observable: Observable<any>;
 
     if (product.enabled) {
-      observable = this.httpClient.put(Helper.getUrl(`/product/${product.id}/disable`), null);
+      observable = this.httpClient.put(
+        Helper.getUrl(`/product/${product.id}/disable`),
+        null
+      );
     } else {
-      observable = this.httpClient.put(Helper.getUrl(`/product/${product.id}/enable`), null);
+      observable = this.httpClient.put(
+        Helper.getUrl(`/product/${product.id}/enable`),
+        null
+      );
     }
 
-    return observable.pipe(
-      catchError(this.handleError)
-    );
+    return observable.pipe(catchError(this.handleError));
   }
 
   /**
    * Obtiene los datos del producto
    */
   get(id: number): Observable<Product> {
-
     return this.httpClient
       .get<Product>(Helper.getUrl('/product/' + id))
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
-
-
 }

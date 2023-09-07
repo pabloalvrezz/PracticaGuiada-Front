@@ -40,6 +40,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { TokenizedInterceptor } from './_interceptors/tokenized-interceptor';
 import { SearcherDetailsComponent } from './searcher_details/searcher-details.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { SearcherDetailsComponent } from './searcher_details/searcher-details.co
     NgProgressRouterModule,
     NgSelectModule,
     ReactiveFormsModule,
+    InfiniteScrollModule,
   ],
   providers: [
     // AuthGuard,

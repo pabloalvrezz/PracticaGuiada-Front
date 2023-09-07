@@ -23,8 +23,26 @@
     </form>
   </div>
 </div>
+
 <div class="container-fluid mt-4">
-  <div class="ml-2">
+  <div class="container" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+    <h1 style="text-align: center">INFINITE SCROLL EXAMPLE</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"><strong>TEXT</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let line of numbers; index as i">
+          <th scope="row">{{i}}</th>
+          <th scope="row">{{line}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div class="ml-2">
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-6 mb-4" *ngFor="let product of searchResult">
         <div class="bg-white rounded shadow-sm"><img src="https://picsum.photos/200" alt=""
@@ -38,9 +56,11 @@
           </div>
         </div>
       </div>
-
     </div>
-  </div>
+  </div> -->
 </div>
-<app-pagination [resultObject]="resultObject" (pageChanged)="showPage($event)" (sizeChanged)="changeSize($event)">
-</app-pagination>
+<button [ngClass]="'no-hidden'"
+*ngIf="showGoUpButton" class="btn btn-dark"
+(click)="scrollTop()">GO UP</button>
+<!-- <app-pagination [resultObject]="resultObject" (pageChanged)="showPage($event)" (sizeChanged)="changeSize($event)">
+</app-pagination> -->
