@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { ProductService } from '../_services/product.service';
@@ -31,16 +31,12 @@ export class SearcherDetailsComponent implements OnInit {
 
     this.route.params.subscribe({
       next: (params: Params) => {
-        console.log('PAramss');
-        console.log(params);
         this.productId = params['id'];
         if (this.productId) {
           this.productService
             .get(this.productId)
             .subscribe((product: Product) => {
                 this.product = product;
-                console.log(this.product.description);
-                console.log(this.product);
             });
         } else {
           console.log('Error');

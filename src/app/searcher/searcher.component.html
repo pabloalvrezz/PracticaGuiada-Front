@@ -36,7 +36,7 @@
             <h5> {{product.name}} {{product.activePrice}}$</h5>
             <p class="small text-muted mb-0">{{product.description}}</p>
             <div class="d-flex justify-content-left  "> 
-              <button [routerLink]="['../product/search/details', product.id]" >{{"search.details" | translate}}</button>
+              <button class="btn btn-primary" [routerLink]="['../product/search/details', product.id]" >{{"search.details" | translate}}</button>
             </div>
           </div>
         </div>

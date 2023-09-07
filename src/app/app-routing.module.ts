@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 const secureRoutes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
   },
 
   /**
@@ -30,7 +30,7 @@ const secureRoutes: Routes = [
    */
   {
     path: 'users',
-    component: UserComponent
+    component: UserComponent,
   },
 
   /**
@@ -38,7 +38,7 @@ const secureRoutes: Routes = [
    */
   {
     path: 'users/create',
-    component: UserDetailComponent
+    component: UserDetailComponent,
   },
 
   /**
@@ -46,15 +46,15 @@ const secureRoutes: Routes = [
    */
   {
     path: 'users/:id',
-    component: UserDetailComponent
+    component: UserDetailComponent,
   },
 
   /**
-  * Consulta de productos
-  */
+   * Consulta de productos
+   */
   {
     path: 'product',
-    component: ProductsComponent
+    component: ProductsComponent,
   },
 
   /**
@@ -66,19 +66,19 @@ const secureRoutes: Routes = [
   },
 
   /**
-  * Detalle de productos.
-  */
+   * Detalle de productos.
+   */
   {
     path: 'product/:id',
-    component: ProductsDetailsComponent
+    component: ProductsDetailsComponent,
   },
 
   /**
    * Consulta de precios
-  */
+   */
   {
     path: 'prices',
-    component: PricesComponent
+    component: PricesComponent,
   },
 
   /**
@@ -102,7 +102,7 @@ const secureRoutes: Routes = [
    */
   {
     path: 'search',
-    component: SearcherComponent
+    component: SearcherComponent,
   },
 
   /**
@@ -110,9 +110,8 @@ const secureRoutes: Routes = [
    */
   {
     path: 'product/search/details/:id',
-    component: SearcherDetailsComponent 
-  }
-    
+    component: SearcherDetailsComponent,
+  },
 ];
 
 const routes: Routes = [
@@ -121,10 +120,8 @@ const routes: Routes = [
    */
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
-
-
 
   /**
    * Ruta main securizada.
@@ -133,18 +130,18 @@ const routes: Routes = [
     path: 'main',
     component: MainComponent,
     canActivate: [AuthGuard],
-    children: secureRoutes
+    children: secureRoutes,
   },
 
   // // otherwhise redirect to main
-  // {
-  //   path: '**',
-  //   redirectTo: 'main/home'
-  // }
+    {
+      path: '**',
+      redirectTo: 'main/home',
+    },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule, TranslateModule]
+  exports: [RouterModule, TranslateModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
