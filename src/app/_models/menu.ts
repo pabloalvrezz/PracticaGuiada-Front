@@ -55,5 +55,6 @@ export const MENU_ITEMS: MenuItem[] = [
     icon: '',
     url: '/main/search'
   },
+  
 
 ];

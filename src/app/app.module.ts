@@ -39,6 +39,7 @@ import { OAuthInterceptor } from './_interceptors/oauth-interceptor';
 import { ProductsComponent } from './products/products.component';
 import { ProductsDetailsComponent } from './products-details/products-details.component';
 import { TokenizedInterceptor } from './_interceptors/tokenized-interceptor';
+import { SearcherDetailsComponent } from './searcher_details/searcher-details.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TokenizedInterceptor } from './_interceptors/tokenized-interceptor';
     PricesComponent,
     PricesDetailsComponent,
     SearcherComponent,
+    SearcherDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,8 @@ import { ProductsDetailsComponent } from './products-details/products-details.co
 import { PricesComponent } from './prices/prices.component';
 import { PricesDetailsComponent } from './prices-details/prices-details.component';
 import { SearcherComponent } from './searcher/searcher.component';
+import { SearcherDetailsComponent } from './searcher_details/searcher-details.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Rutas securizadas
@@ -101,6 +103,14 @@ const secureRoutes: Routes = [
   {
     path: 'search',
     component: SearcherComponent
+  },
+
+  /**
+   * Detalle de los productos en el buscador
+   */
+  {
+    path: 'search/details',
+    component: SearcherDetailsComponent 
   }
     
 ];
@@ -135,6 +145,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule, TranslateModule]
 })
 export class AppRoutingModule { }

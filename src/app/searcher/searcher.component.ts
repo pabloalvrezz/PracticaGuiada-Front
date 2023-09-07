@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Observable } from 'rxjs';
 import {
+  Direction,
   FindRequest,
   Order,
   Page,
@@ -20,9 +21,6 @@ import { ProductService } from '../_services/product.service';
   templateUrl: 'searcher.component.html',
 })
 export class SearcherComponent extends PaginatedSearchComponent<Product> {
-  //variables para controlar el infinite scroll
-  private lastPage = 5;
-  private actualPage: number;
 
   constructor(
     router: Router,
@@ -31,7 +29,6 @@ export class SearcherComponent extends PaginatedSearchComponent<Product> {
     private productService: ProductService
   ) {
     super(router, translate, toastr);
-    this.actualPage = 1;
   }
 
   protected override findInternal(
@@ -42,18 +39,13 @@ export class SearcherComponent extends PaginatedSearchComponent<Product> {
   protected override removeInternal(
     entity: Product
   ): Observable<{} | Response> {
-    throw new Error('Method not implemented.');
+    return this.productService.toggle(entity);
   }
   protected override getDefaultOrder(): Order {
-    throw new Error('Method not implemented.');
-  }
-
-  /**
-   * Metodo que usaremos para controlar el scroll infinito
-   */
-  onScroll(){
-    if(this.actualPage < this.lastPage){
-      this.actualPage++;
+    return {
+      property: 'id',
+      direction: Direction.ASC
     }
   }
+
 }

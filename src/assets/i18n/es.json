@@ -99,6 +99,9 @@
         "details": "Detalles",
         "add": "Comprar"
 
+    },
+    "details":{
+        "title": "Detalles de producto"
     }
 
 }
