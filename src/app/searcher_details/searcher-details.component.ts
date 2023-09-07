@@ -1,27 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
+import { ProductService } from '../_services/product.service';
 import { Product } from '../_models/product';
 
 @Component({
-    selector: 'selector-name',
-    templateUrl: 'searcher-details.component.html'
+  selector: 'searcher-details',
+  templateUrl: 'searcher-details.component.html',
 })
-
 export class SearcherDetailsComponent implements OnInit {
-    product: Product = new Product();
+  product: Product = new Product();
 
-    constructor(private router: Router,
-        private translate: TranslateService,
-        private toastr: ToastrService,
-        private route: ActivatedRoute
-      ) {
-      }
-    
+  productId!: number;
 
-    ngOnInit() { 
-        console.log(this.product.description)
-    }
+  description: string | null = '';
+
+  stock?: number;
+
+  price?: number;
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
+
+  ngOnInit() {
+    this.productId = 0;
+    this.description = '';
+    this.stock = 0;
+
+    this.route.params.subscribe({
+      next: (params: Params) => {
+        console.log('PAramss');
+        console.log(params);
+        this.productId = params['id'];
+        if (this.productId) {
+          this.productService
+            .get(this.productId)
+            .subscribe((product: Product) => {
+                this.product = product;
+                console.log(this.product.description);
+                console.log(this.product);
+            });
+        } else {
+          console.log('Error');
+        }
+      },
+    });
+  }
 }

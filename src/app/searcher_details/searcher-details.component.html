@@ -5,12 +5,11 @@
 
 <div class="container-fluid">
     <p class="lead text-end align-items-center">
-        Nombre del producto
-    </p>
+        Nombre: {{product.name}}</p>
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <!-- <div class="col-md-8">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -37,8 +36,8 @@
               <span class="visually-hidden">Siguiente</span>
             </button>
           </div>
-    </div>
-    <div class="container-fluid col-md-4">
+    </div> -->
+    <div class="container-fluid col-md-12 bg-black">
         <button type="button" class="btn btn-success">{{"search.add" | translate}} <svg
                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket2"
                 viewBox="0 0 16 16">
@@ -47,17 +46,16 @@
                 <path
                     d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6H2.163z" />
             </svg></button>
-        Precio del producto
+        <strong>
+            Precio del producto: {{product.activePrice}} $
+        </strong>
         <hr>
         <h4>{{"details.description" | translate}}</h4>
 
         <p>
-            Lorem ipsum dolor sit amet. Est repellendus debitis et modi eligendi ab ipsam aperiam aut molestiae enim ut
-            quam
-            quas. Nam omnis temporibus id nemo voluptates et quia magnam aut cumque voluptatem aut quibusdam ratione ab
-            nemo
-            illo in magni veniam.
+            {{product.description}}
         </p>
-
     </div>
+    
+    <div class="container bg-primary" style="bottom: 0;">Hola</div>
 </div>

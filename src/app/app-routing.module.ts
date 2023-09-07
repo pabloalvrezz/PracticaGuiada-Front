@@ -109,7 +109,7 @@ const secureRoutes: Routes = [
    * Detalle de los productos en el buscador
    */
   {
-    path: 'search/details',
+    path: 'product/search/details/:id',
     component: SearcherDetailsComponent 
   }
     
@@ -136,11 +136,11 @@ const routes: Routes = [
     children: secureRoutes
   },
 
-  // otherwhise redirect to main
-  {
-    path: '**',
-    redirectTo: 'main/home'
-  }
+  // // otherwhise redirect to main
+  // {
+  //   path: '**',
+  //   redirectTo: 'main/home'
+  // }
 ];
 
 @NgModule({

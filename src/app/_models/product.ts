@@ -31,7 +31,7 @@ export class Product {
   stock!: number;
 
   /**
-   * Objeto de tipo precio
+   * Precio actual del producto
    */
-  price?: Prices
+  activePrice!: number
 }

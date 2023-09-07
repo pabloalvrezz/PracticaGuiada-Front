@@ -1,12 +1,13 @@
+import { Product } from './../_models/product';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { ToastrService } from 'ngx-toastr';
 
 import { Observable } from 'rxjs';
+
 import {
   Direction,
   FindRequest,
@@ -14,7 +15,6 @@ import {
   Page,
   PaginatedSearchComponent,
 } from '../_helpers/search';
-import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 
 @Component({
@@ -25,16 +25,16 @@ export class SearcherComponent
   extends PaginatedSearchComponent<Product>
   implements OnInit
 {
-  public numbers!: Array<Number>;
   public showGoUpButton: boolean;
   showScrollHeight = 400;
   hideScrollHeight = 200;
-
+  
   private lastPage = 5;
   private actualPage: number;
+  private Productos?: Observable<Product>[];
 
+  producto!: Product
 
-  
   constructor(
     router: Router,
     translate: TranslateService,
@@ -47,13 +47,12 @@ export class SearcherComponent
   }
 
   ngOnInit(): void {
-    this.numbers = new Array<number>();
-    this.addNumbers();
   }
 
   protected override findInternal(
     findRequest: FindRequest
   ): Observable<Page<Product>> {
+    console.log(this.Productos?.length)
     return this.productService.searchProducts(findRequest);
   }
   protected override removeInternal(
@@ -68,28 +67,15 @@ export class SearcherComponent
     };
   }
 
-  /**
-   * Metodo usado para renderizar los números
-   */
-  addNumbers() {
-    let number = 0;
-    let numberCounter = this.numbers.length;
-
-    for (let i = 0; i < 40; i++) {
-      this.numbers.push(number + numberCounter);
-      number++;
-      numberCounter++;
-    }
-  }
+ 
 
   /**
    * Metodo que controlara el scroll del usuario
    */
   onScroll() {
     if (this.actualPage < this.lastPage) {
-      this.addNumbers();
-      this.actualPage++;
-    } else console.log('NO hay mas números');
+            this.actualPage++;
+    }
   }
 
   /**

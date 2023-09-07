@@ -10,8 +10,6 @@ import { Observable } from 'rxjs';
 import { Direction, FindRequest, Order, Page, PaginatedSearchComponent } from '../_helpers/search';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
-import { PricesService } from '../_services/prices.service';
-import { Prices } from '../_models/price';
 
 @Component({
   selector: 'app-products',

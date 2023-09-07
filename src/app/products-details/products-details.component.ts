@@ -67,25 +67,29 @@ export class ProductsDetailsComponent implements OnInit {
     this.stock = 0;
     this.enabled = true;
     this.prices.cuantity = 0;
-
+    
     this.route.params.subscribe({
       next: (params: Params) => {
+        console.log("PAramss")
+        console.log(params)
         this.productId = params['id'];
         if (this.productId) {
           this.createMode = false;
-
+          
           this.productService.get(this.productId).subscribe(
             ((product: Product) => {
               this.product = product;
+              console.log(this.product.description)
             })
-          );
+            );
+          }
+          else {
+            this.createMode = true;
+            this.product.enabled = true;
+          }
         }
-        else {
-          this.createMode = true;
-          this.product.enabled = true;
-        }
-      }
-    });
+      });
+      
   }
 
   /**

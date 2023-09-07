@@ -35,9 +35,9 @@
           <div class="p-4">
             <h5> {{product.name}} {{product.activePrice}}$</h5>
             <p class="small text-muted mb-0">{{product.description}}</p>
-            <div class="d-flex justify-content-left  "><button class="btn btn-primary"><a class="btn"
-                  [routerLink]="['./details']">{{"search.details" |
-                  translate}}</a></button></div>
+            <div class="d-flex justify-content-left  "> 
+              <button [routerLink]="['../product/search/details', product.id]" >{{"search.details" | translate}}</button>
+            </div>
           </div>
         </div>
       </div>
@@ -45,6 +45,7 @@
     <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2"
       (click)="scrollTop()">{{"search.button" | translate}}</button>
   </div>
+
 </div>
 <!-- <app-pagination [resultObject]="resultObject" (pageChanged)="showPage($event)" (sizeChanged)="changeSize($event)">
 </app-pagination> -->
