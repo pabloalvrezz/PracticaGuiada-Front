@@ -95,7 +95,10 @@
     "search":{
         "title": "Izertis Shop",
         "details": "Details",
-        "add": "Buy"
+        "button": "Go up"
+    },
+    "details":{
+        "description": "Descripction"
     }
 
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { Product } from '../_models/product';
 
 @Component({
     selector: 'selector-name',
@@ -10,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class SearcherDetailsComponent implements OnInit {
+    product: Product = new Product();
+
     constructor(private router: Router,
         private translate: TranslateService,
         private toastr: ToastrService,
@@ -18,5 +21,7 @@ export class SearcherDetailsComponent implements OnInit {
       }
     
 
-    ngOnInit() { }
+    ngOnInit() { 
+        console.log(this.product.description)
+    }
 }

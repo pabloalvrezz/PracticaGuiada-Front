@@ -97,11 +97,13 @@
     "search":{
         "title": "Tienda Izertis ",
         "details": "Detalles",
-        "add": "Comprar"
+        "add": "Comprar",
+        "button": "Volver arriba"
 
     },
     "details":{
-        "title": "Detalles de producto"
+        "title": "Detalles de producto",
+        "description": "Descripción del producto"
     }
 
 }

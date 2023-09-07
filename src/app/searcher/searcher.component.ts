@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -32,6 +33,8 @@ export class SearcherComponent
   private lastPage = 5;
   private actualPage: number;
 
+
+  
   constructor(
     router: Router,
     translate: TranslateService,
