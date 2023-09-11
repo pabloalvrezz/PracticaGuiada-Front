@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
 
 import { ProductService } from '../_services/product.service';
 import { Product } from '../_models/product';
@@ -19,9 +21,15 @@ export class SearcherDetailsComponent implements OnInit {
 
   price?: number;
 
+  /**
+   * Variables usadas para controlar el toast del carrito de la compra
+   */
+  
+
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -36,7 +44,7 @@ export class SearcherDetailsComponent implements OnInit {
           this.productService
             .get(this.productId)
             .subscribe((product: Product) => {
-                this.product = product;
+              this.product = product;
             });
         } else {
           console.log('Error');
@@ -44,4 +52,9 @@ export class SearcherDetailsComponent implements OnInit {
       },
     });
   }
+  
+  public showSuccess(): void {
+    this.toastrService.success('Producto añadido corretamente a su carrito');
+  }
+
 }

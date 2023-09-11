@@ -103,7 +103,8 @@
     },
     "details":{
         "title": "Detalles de producto",
-        "description": "Descripción del producto"
+        "description": "Descripción del producto",
+        "correctTitle": "Producto añadido de forma correcta"
     }
 
 }
