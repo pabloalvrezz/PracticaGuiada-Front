@@ -136,7 +136,7 @@ const routes: Routes = [
   // // otherwhise redirect to main
   {
     path: '**',
-    redirectTo: 'main/home',
+    redirectTo: 'search',
   },
 ];
 

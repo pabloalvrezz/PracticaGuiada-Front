@@ -16,6 +16,7 @@ import {
   PaginatedSearchComponent,
 } from '../_helpers/search';
 import { ProductService } from '../_services/product.service';
+import { LoginService } from '../_services/login.service';
 
 @Component({
   selector: 'selector-name',
@@ -28,6 +29,8 @@ export class SearcherComponent
   public showGoUpButton: boolean;
   showScrollHeight = 400;
   hideScrollHeight = 200;
+  isLogged = true;
+  isAdmin = false;
 
   private lastPage = 5;
   private actualPage: number;
@@ -36,14 +39,19 @@ export class SearcherComponent
     router: Router,
     translate: TranslateService,
     toastr: ToastrService,
-    private productService: ProductService
+    public loginService: LoginService,
+    private productService: ProductService,
   ) {
     super(router, translate, toastr);
     this.actualPage = 1;
     this.showGoUpButton = false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
+    this.isAdmin = true
+   
+  }
 
   protected override findInternal(
     findRequest: FindRequest
@@ -60,6 +68,14 @@ export class SearcherComponent
       property: 'id',
       direction: Direction.ASC,
     };
+  }
+
+  logOut(){
+    let data = ['access_token', 'current_user', 'refresh_token', 'username'];
+    data.forEach(data => {
+      localStorage.removeItem(data);
+    })
+    this.isLogged = false
   }
 
   /**

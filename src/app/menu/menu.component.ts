@@ -28,11 +28,10 @@ export class MenuComponent implements OnInit {
   }
 
   /**
-   * Realiza el logout del usuario.
+   * Devuelve al usuario al buscador de
    */
   logout() {
-    this.loginService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/search']);
   }
 
 }

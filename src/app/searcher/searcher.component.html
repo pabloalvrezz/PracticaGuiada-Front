@@ -1,4 +1,14 @@
-<div class="container-fluid">
+<div class="container-fluid row mt-2">
+  <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
+    <button *ngIf="!isLogged" [routerLink]="['/login']" type="button" class="btn btn-outline-secondary">{{"search.logIn" | translate}}</button>
+    <button *ngIf="isLogged" (click)="this.logOut()" type="button" class="btn btn-outline-secondary">{{"search.logOut" | translate}}</button>
+    <h6 *ngIf="isLogged">{{"search.welcome" | translate}} {{this.loginService.getCurrentUser()?.name}}</h6>
+  </div>
+  <div class="col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end">
+    <button *ngIf="isLogged && isAdmin" [routerLink]="['/main/home']" type="button" class="btn btn-outline-secondary">{{"search.backOffice" | translate}}</button>
+  </div>
+</div>
+<div class="container-fluid ">
   <div>
     <div class="d-flex justify-content-end ml-2 ">
       <h1 class="display-6">{{"search.title" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="28"
@@ -27,7 +37,7 @@
 
 
   <div class="container-fluid " infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
-    <h1 style="text-align: center">PRODUCTOS</h1>
+    <h1 style="text-align: center">{{"search.products" | translate}}</h1>
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-6 mb-4" *ngFor="let product of searchResult">
         <div class="bg-white rounded shadow-sm"><img src="https://source.unsplash.com/random/100x80?sig=1" alt=""
@@ -35,8 +45,9 @@
           <div class="p-4">
             <h5> {{product.name}} {{product.activePrice}}$</h5>
             <p class="small text-muted mb-0">{{product.description}}</p>
-            <div class="d-flex justify-content-left  "> 
-              <button class="btn btn-primary" [routerLink]="['../product/search/details', product.id]" >{{"search.details" | translate}}</button>
+            <div class="d-flex justify-content-left  ">
+              <button class="btn btn-primary"
+                [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
             </div>
           </div>
         </div>
@@ -47,5 +58,7 @@
   </div>
 
 </div>
+
+
 <!-- <app-pagination [resultObject]="resultObject" (pageChanged)="showPage($event)" (sizeChanged)="changeSize($event)">
 </app-pagination> -->

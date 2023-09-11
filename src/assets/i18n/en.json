@@ -95,7 +95,12 @@
     "search":{
         "title": "Izertis Shop",
         "details": "Details",
-        "button": "Go up"
+        "button": "Go up",
+        "logIn": "Log in",
+        "products": "Products",
+        "logOut": "Log out",
+        "welcome": "Bienvenido",
+        "backOffice": "Go to the BackOffice"
     },
     "details":{
         "description": "Descripction"

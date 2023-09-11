@@ -98,7 +98,12 @@
         "title": "Tienda Izertis ",
         "details": "Detalles",
         "add": "Comprar",
-        "button": "Volver arriba"
+        "button": "Volver arriba",
+        "products": "Productos",
+        "logIn": "Iniciar Sesión",
+        "logOut": "Salir",
+        "welcome": "Bienvenido",
+        "backOffice": "Ir al panel de administrador"
 
     },
     "details":{

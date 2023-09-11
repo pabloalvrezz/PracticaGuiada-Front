@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           this.userService.getUserData().subscribe((user: User) => {
             localStorage.setItem('current_user', JSON.stringify(user));
           });
-          this.router.navigate(['/']);
+          this.router.navigate(['/search']);
         } else {
           this.toastr.error(this.translate.instant('login.error.invalid-body'), this.translate.instant('login.error.invalid'));
         }
