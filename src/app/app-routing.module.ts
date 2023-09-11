@@ -96,22 +96,6 @@ const secureRoutes: Routes = [
     path: 'prices/:id',
     component: PricesDetailsComponent,
   },
-
-  /**
-   * Buscador de productos
-   */
-  {
-    path: 'search',
-    component: SearcherComponent,
-  },
-
-  /**
-   * Detalle de los productos en el buscador
-   */
-  {
-    path: 'product/search/details/:id',
-    component: SearcherDetailsComponent,
-  },
 ];
 
 const routes: Routes = [
@@ -133,11 +117,27 @@ const routes: Routes = [
     children: secureRoutes,
   },
 
+  /**
+   * Buscador de productos
+   */
+  {
+    path: 'search',
+    component: SearcherComponent,
+  },
+
+  /**
+   * Detalle de los productos en el buscador
+   */
+  {
+    path: 'product/search/details/:id',
+    component: SearcherDetailsComponent,
+  },
+
   // // otherwhise redirect to main
-    {
-      path: '**',
-      redirectTo: 'main/home',
-    },
+  {
+    path: '**',
+    redirectTo: 'main/home',
+  },
 ];
 
 @NgModule({

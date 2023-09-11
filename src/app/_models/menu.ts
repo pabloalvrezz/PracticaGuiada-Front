@@ -53,7 +53,7 @@ export const MENU_ITEMS: MenuItem[] = [
   {
     title: 'menu.search',
     icon: '',
-    url: '/main/search'
+    url: '/search'
   },
   
 

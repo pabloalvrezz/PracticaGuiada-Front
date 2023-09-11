@@ -38,13 +38,7 @@ export class ProductService extends AbstractService {
       })
       .pipe(catchError(this.handleError));
   }
-  /**
-   * Realiza la consulta de todos los productos
-   */
-  searchAllProducts(findRequest: FindRequest): Observable<Page<Product>> {
-    return this.httpClient
-    .get<Page<Product>>(Helper.getUrl('/product/list')).pipe(catchError(this.handleError))
-  }
+
   /**
    * Realiza la consulta de productos que no tiene asignado ningun precio
    */

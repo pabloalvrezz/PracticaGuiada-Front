@@ -53,6 +53,10 @@ export class SearcherDetailsComponent implements OnInit {
     });
   }
   
+  /**
+   * Metodo usado para controlar la notificación a la hora
+   * de pulsar el boton de comprar
+   */
   public showSuccess(): void {
     this.toastrService.success('Producto añadido corretamente a su carrito');
   }

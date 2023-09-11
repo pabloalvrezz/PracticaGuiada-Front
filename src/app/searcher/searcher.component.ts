@@ -28,12 +28,9 @@ export class SearcherComponent
   public showGoUpButton: boolean;
   showScrollHeight = 400;
   hideScrollHeight = 200;
-  
+
   private lastPage = 5;
   private actualPage: number;
-  private Productos?: Observable<Product>[];
-
-  producto!: Product
 
   constructor(
     router: Router,
@@ -46,13 +43,11 @@ export class SearcherComponent
     this.showGoUpButton = false;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   protected override findInternal(
     findRequest: FindRequest
   ): Observable<Page<Product>> {
-    console.log(this.Productos?.length)
     return this.productService.searchProducts(findRequest);
   }
   protected override removeInternal(
@@ -67,14 +62,12 @@ export class SearcherComponent
     };
   }
 
- 
-
   /**
    * Metodo que controlara el scroll del usuario
    */
   onScroll() {
     if (this.actualPage < this.lastPage) {
-            this.actualPage++;
+      this.actualPage++;
     }
   }
 
@@ -85,18 +78,21 @@ export class SearcherComponent
     document.body.scrollTop = 0; // para el buscador safari
     document.documentElement.scrollTop = 0; // para cualquier otro buscador
   }
-	
-@HostListener('window:scroll', [])
+
+  @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (( window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop) > this.showScrollHeight) {
-      this.showGoUpButton = true;
-    } else if ( this.showGoUpButton &&
+    if (
       (window.pageYOffset ||
         document.documentElement.scrollTop ||
-        document.body.scrollTop)
-      < this.hideScrollHeight) {
+        document.body.scrollTop) > this.showScrollHeight
+    ) {
+      this.showGoUpButton = true;
+    } else if (
+      this.showGoUpButton &&
+      (window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop) < this.hideScrollHeight
+    ) {
       this.showGoUpButton = false;
     }
   }
