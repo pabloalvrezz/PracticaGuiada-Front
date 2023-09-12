@@ -1,64 +1,94 @@
-<div class="container-fluid row mt-2">
-  <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
-    <button *ngIf="!isLogged" [routerLink]="['/login']" type="button" class="btn btn-outline-secondary">{{"search.logIn" | translate}}</button>
-    <button *ngIf="isLogged" (click)="this.logOut()" type="button" class="btn btn-outline-secondary">{{"search.logOut" | translate}}</button>
-    <h6 *ngIf="isLogged">{{"search.welcome" | translate}} {{this.loginService.getCurrentUser()?.name}}</h6>
-  </div>
-  <div class="col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end">
-    <button *ngIf="isLogged && isAdmin" [routerLink]="['/main/home']" type="button" class="btn btn-outline-secondary">{{"search.backOffice" | translate}}</button>
-  </div>
-</div>
-<div class="container-fluid ">
-  <div>
-    <div class="d-flex justify-content-end ml-2 ">
-      <h1 class="display-6">{{"search.title" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="28"
-          height="30" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
-          <path
-            d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
-        </svg></h1>
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div class="container-fluid row mt-2">
+    <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
+      <button *ngIf="!isLogged" [routerLink]="['/login']" type="button"
+        class="btn btn-outline-secondary">{{"search.logIn"
+        | translate}}</button>
+      <button *ngIf="isLogged" (click)="this.logOut()" type="button" class="btn btn-outline-secondary"><svg
+          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+          <path fill-rule="evenodd"
+            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+        </svg></button>
+      <h6 *ngIf="isLogged">{{"search.welcome" | translate}} {{this.loginService.getCurrentUser()?.name}}</h6>
     </div>
-    <div class="container-fluid">
-      <legend>
-        {{ "form.search-form" | translate }}
-      </legend>
-      <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
-        <div class="col-md-3">
-          <label for="name" class="form-label">{{
-            "product.name" | translate
-            }}</label>
-          <div class="input-group">
-            <input type="text" class="form-control" name="name" placeholder="{{ 'product.name' | translate }}"
-              aria-describedby="name-addon" [(ngModel)]="findRequest.filter.name" #name="ngModel" />
+    <div class="container-fluid col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end">
+      <button *ngIf="statusChecked()" [routerLink]="['/main/home']" type="button"
+        class="btn btn-outline-secondary">{{"search.backOffice" | translate}}</button>
+    </div>
+  </div>
+  <div class="container-fluid ">
+    <div>
+      <div class="d-flex justify-content-end ml-2 ">
+        <h1 class="display-6">{{"search.title" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="28"
+            height="30" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+            <path
+              d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+          </svg></h1>
+      </div>
+      <div class="container-fluid">
+        <legend>
+          {{ "form.search-form" | translate }}
+        </legend>
+        <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
+          <div class="col-md-6">
+            <label for="name" class="form-label">{{
+              "product.name" | translate
+              }}</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="name" placeholder="{{ 'product.name' | translate }}"
+                aria-describedby="name-addon" [(ngModel)]="findRequest.filter.name" #name="ngModel" />
+            </div>
           </div>
-        </div>
-      </form>
+          <div class="col-md-6">
+            <label for="description" class="form-label">{{
+              "product.description" | translate
+              }}</label>
+            <input type="text" class="form-control" name="description"
+              placeholder="{{ 'product.description' | translate }}" [(ngModel)]="findRequest.filter.description"
+              #name="ngModel" />
+          </div>
+
+          <div class="form-group ">
+            <div class="offset-sm-2 col-sm-10 text-end">
+              <button type="submit" class="btn btn-outline-secondary">
+                {{ "form.search" | translate }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
 
-  <div class="container-fluid " infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
-    <h1 style="text-align: center">{{"search.products" | translate}}</h1>
-    <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-6 mb-4" *ngFor="let product of searchResult">
-        <div class="bg-white rounded shadow-sm"><img src="https://source.unsplash.com/random/100x80?sig=1" alt=""
-            class="img-fluid card-img-top">
-          <div class="p-4">
-            <h5> {{product.name}} {{product.activePrice}}$</h5>
-            <p class="small text-muted mb-0">{{product.description}}</p>
-            <div class="d-flex justify-content-left  ">
-              <button class="btn btn-primary"
-                [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
+    <div class="container-fluid " infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+      <h1 style="text-align: center">{{"search.products" | translate}}</h1>
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-6 mb-4" *ngFor="let product of searchResult">
+          <div class="bg-white rounded shadow-sm"><img src={{product.url}} alt=""
+              class="img-fluid card-img-top" alt="Imagen no encontrada">
+            <div class="p-4">
+              <h5> {{product.name}} {{product.activePrice}}$</h5>
+              <p class="small text-muted mb-1">{{product.description}}</p>
+              <div class="mb-0">
+                <button class="btn btn-primary"
+                  [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2 mb-2"
+        (click)="scrollTop()">{{"search.button" | translate}}</button>
     </div>
-    <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2"
-      (click)="scrollTop()">{{"search.button" | translate}}</button>
+
   </div>
 
-</div>
+</body>
 
-
-<!-- <app-pagination [resultObject]="resultObject" (pageChanged)="showPage($event)" (sizeChanged)="changeSize($event)">
-</app-pagination> -->
+</html>

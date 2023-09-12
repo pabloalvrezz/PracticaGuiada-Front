@@ -34,4 +34,9 @@ export class Product {
    * Precio actual del producto
    */
   activePrice!: number
+
+  /**
+   * Url de la imagen del producto
+   */
+  url!: string;
 }

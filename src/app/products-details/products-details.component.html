@@ -46,6 +46,24 @@
       </div>
     </div>
 
+    <div class="col-md-12">
+      <label for="url" class="form-label">{{
+        "product.url" | translate
+      }}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="url"
+        description="url"
+        required
+        placeholder="{{ 'product.url' | translate }}"
+        [(ngModel)]="product.url"
+        #url="ngModel"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+
+
     <div class="col-12">
       <label for="enabled" class="form-label">{{
         "product.enabled" | translate

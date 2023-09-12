@@ -24,13 +24,12 @@ import { LoginService } from '../_services/login.service';
 })
 export class SearcherComponent
   extends PaginatedSearchComponent<Product>
-  implements OnInit
 {
   public showGoUpButton: boolean;
-  showScrollHeight = 400;
-  hideScrollHeight = 200;
-  isLogged = true;
-  isAdmin = false;
+  public showScrollHeight = 400;
+  public hideScrollHeight = 200;
+  public isLogged = true;
+  public isAdmin = false;
 
   private lastPage = 5;
   private actualPage: number;
@@ -40,19 +39,13 @@ export class SearcherComponent
     translate: TranslateService,
     toastr: ToastrService,
     public loginService: LoginService,
-    private productService: ProductService,
+    public productService: ProductService,
   ) {
     super(router, translate, toastr);
     this.actualPage = 1;
     this.showGoUpButton = false;
   }
-
-  ngOnInit(): void {
-    if(this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
-    this.isAdmin = true
-   
-  }
-
+ 
   protected override findInternal(
     findRequest: FindRequest
   ): Observable<Page<Product>> {
@@ -70,12 +63,28 @@ export class SearcherComponent
     };
   }
 
+  /**
+   * Metodo que usaremos para cerrar la sesión del usuario
+   */
   logOut(){
+    // borraremos todos los datos almacenamos del usuario
     let data = ['access_token', 'current_user', 'refresh_token', 'username'];
     data.forEach(data => {
       localStorage.removeItem(data);
     })
     this.isLogged = false
+  }
+
+  /**
+   * Metodo que usaremos para controlar el estado de las credenciales del usuario
+   */
+  statusChecked(): boolean{
+    if(this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
+    this.isAdmin = true
+
+    if(this.isAdmin && this.isLogged)
+      return true
+    return false
   }
 
   /**

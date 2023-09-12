@@ -1,23 +1,33 @@
-<div class="d-flex justify-content-end ml-2 ">
-  <h1 class="display-6">{{"details.title" | translate }}
-  </h1>
+<div class="container-fluid d-flex">
+  <div class="container-fluid d-flex justify-content-left mt-1 col-lg-6">
+    <button class="btn btn-outline-secondary" [routerLink]="['/search']">{{"details.return" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+    </svg></button>
+  </div>
+
+  <div class="d-flex justify-content-end ml-2 col-lg-6 ">
+    <h1 class="display-6">{{"details.title" | translate }}
+    </h1>
+  </div>
 </div>
+
 
 <div class="container-fluid">
   <p class="lead text-end align-items-center">
-    Nombre: {{product.name}}</p>
+    {{product.name}}</p>
 </div>
 
-<div class="container-fluid col-md-12">
-  <button type="button" class="btn btn-success" (click)="showSuccess()" [routerLink]="['/search']">{{"search.add" | translate}} <svg xmlns="http://www.w3.org/2000/svg"
-      width="16" height="16" fill="currentColor" class="bi bi-basket2" viewBox="0 0 16 16">
+<div class="container-fluid col-md-12 ml-2">
+  <button type="button" class="btn btn-success" (click)="showSuccess()" [routerLink]="['/search']">{{"search.add" |
+    translate}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket2"
+      viewBox="0 0 16 16">
       <path
         d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0v-2z" />
       <path
         d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6H2.163z" />
     </svg></button>
   <strong>
-    Precio del producto: {{product.activePrice}} $
+    {{"details.price" | translate}} {{product.activePrice}} $
   </strong>
   <hr>
   <h4>{{"details.description" | translate}}</h4>
@@ -27,7 +37,7 @@
   </p>
 </div>
 
-<div id="slider" class="carousel slide" data-ride="carousel">
+<div id="slider" class="container-fluid carousel slide ml-2" data-ride="carousel">
   <ol class="carousel-indicators">
     <li type="button" data-target="#carouselExampleIndicators" data-slide-to="0" class="active" aria-current="true"
       aria-label="Slide 1"></li>

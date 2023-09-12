@@ -73,12 +73,15 @@
       "create": "Create product",
       "id": "Id",
       "name": "Name",
-      "description": "Descripction",
+      "description": "Description",
       "enabled": "Avaible",
       "stock": "Stock",
       "price": "Price",
       "create-product-title": "Create new product",
-      "edit-product-title": "Edit: {{description}}"
+      "edit-product-title": "Edit: {{description}}",
+      "actions": "Actions",
+      "url": "Url of the image of the product"
+
     },
    "price":{
       "title": "Prices",
@@ -97,13 +100,18 @@
         "details": "Details",
         "button": "Go up",
         "logIn": "Log in",
+        "add": "Buy",
         "products": "Products",
         "logOut": "Log out",
         "welcome": "Bienvenido",
         "backOffice": "Go to the BackOffice"
     },
     "details":{
-        "description": "Descripction"
+        "description": "Description",
+        "title": "Details of the product",
+        "price": "Price",
+        "correctTitle": "Producto added to your shopping bag",
+        "return": "Go back"
     }
 
 }

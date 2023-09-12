@@ -80,7 +80,8 @@
       "create-product-title": "Crear nuevo producto",
       "disponibility": "Disponibilidad",
       "actions": "Acciones",
-      "edit-product-title": "Editar: {{description}}"
+      "edit-product-title": "Editar: {{description}}",
+      "url": "Url de la imagen del producto"
     },
     "price":{
       "title": "Precios",
@@ -109,7 +110,9 @@
     "details":{
         "title": "Detalles de producto",
         "description": "Descripción del producto",
-        "correctTitle": "Producto añadido de forma correcta"
+        "correctTitle": "Producto añadido de forma correcta",
+        "Price": "Precio",
+        "return": "Volver"
     }
 
 }
