@@ -1,46 +1,38 @@
-<div
-  class="row"
-  *ngIf="resultObject !== undefined && resultObject.numberOfElements > 0"
->
-  <div class="col-lg-3">
-    <p>
-      {{
+<div class="container-fluid" *ngIf="resultObject !== undefined && resultObject.numberOfElements > 0">
+  <div class="row">
+    <div class="col align-self-start ">
+      <p>
+        {{
         "form.pagination"
-          | translate
-            : "{ min: " +
-                min +
-                ", max: " +
-                max +
-                ", total: " +
-                totalElements +
-                " }"
-      }}
-    </p>
-  </div>
-
-  <div class="col-lg-4 offset-lg-2">
-    <pagination
-      [boundaryLinks]="true"
-      [totalItems]="resultObject.totalElements"
-      [rotate]="false"
-      [(ngModel)]="currentPage"
-      (pageChanged)="showPage($event)"
-      [itemsPerPage]="resultObject.size"
-      previousText="{{ 'form.pagination-previous' | translate }}"
-      nextText="{{ 'form.pagination-next' | translate }}"
-      firstText="{{ 'form.pagination-first' | translate }}"
-      lastText="{{ 'form.pagination-last' | translate }}"
-    >
-    </pagination>
-  </div>
-
-  <div class="col-lg-3">
-    <select [(ngModel)]="pageSize" class="form-control" (change)="changeSize()">
-      <option value="1">1</option>
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="15">15</option>
-      <option value="20">20</option>
-    </select>
+        | translate
+        : "{ min: " +
+        min +
+        ", max: " +
+        max +
+        ", total: " +
+        totalElements +
+        " }"
+        }}
+      </p>
+    </div>
+  
+    <div class="col align-self-center">
+      <pagination [boundaryLinks]="true" [totalItems]="resultObject.totalElements" [rotate]="false"
+        [(ngModel)]="currentPage" (pageChanged)="showPage($event)" [itemsPerPage]="resultObject.size"
+        previousText="{{ 'form.pagination-previous' | translate }}" nextText="{{ 'form.pagination-next' | translate }}"
+        firstText="{{ 'form.pagination-first' | translate }}" lastText="{{ 'form.pagination-last' | translate }}">
+      </pagination>
+    </div>
+  
+    <div class="col ">
+      <select [(ngModel)]="pageSize" class="form-control" (change)="changeSize()">
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+    </div>
   </div>
 </div>
+

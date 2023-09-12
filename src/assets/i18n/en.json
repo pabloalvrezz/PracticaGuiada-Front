@@ -64,6 +64,7 @@
         "country": "Country",
         "language": "Language",
         "enabled": "Enabled",
+        "actions": "Actions",
         "username": "Username",
         "password": "Password",
         "edit-user-title": "Edit user: {{name}}",

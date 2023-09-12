@@ -3,9 +3,7 @@
     <h2>{{ "user.title" | translate }}</h2>
   </div>
   <div class="col-lg-2 text-end actions">
-    <a routerLink="create" class="btn btn-primary"
-      ><em class="oi oi-plus"></em> {{ "user.create" | translate }}</a
-    >
+    <a routerLink="create" class="btn btn-primary"><em class="oi oi-plus"></em> {{ "user.create" | translate }}</a>
   </div>
 </div>
 
@@ -17,41 +15,23 @@
     <div class="col-md-4">
       <label for="email" class="form-label">{{
         "user.email" | translate
-      }}</label>
+        }}</label>
       <div class="input-group">
         <span class="input-group-text" id="email-addon">@</span>
-        <input
-          type="text"
-          class="form-control"
-          name="email"
-          placeholder="{{ 'user.email' | translate }}"
-          aria-describedby="email-addon"
-          [(ngModel)]="findRequest.filter.email"
-          #email="ngModel"
-        />
+        <input type="text" class="form-control" name="email" placeholder="{{ 'user.email' | translate }}"
+          aria-describedby="email-addon" [(ngModel)]="findRequest.filter.email" #email="ngModel" />
       </div>
     </div>
     <div class="col-md-6">
       <label for="name" class="form-label">{{ "user.name" | translate }}</label>
-      <input
-        type="text"
-        class="form-control"
-        name="name"
-        placeholder="{{ 'user.name' | translate }}"
-        [(ngModel)]="findRequest.filter.name"
-        #name="ngModel"
-      />
+      <input type="text" class="form-control" name="name" placeholder="{{ 'user.name' | translate }}"
+        [(ngModel)]="findRequest.filter.name" #name="ngModel" />
     </div>
     <div class="col-md-2">
       <label for="activo" class="form-label">{{
         "user.enabled" | translate
-      }}</label>
-      <select
-        name="activo"
-        class="form-select"
-        [(ngModel)]="findRequest.filter.enabled"
-        #enabled="ngModel"
-      >
+        }}</label>
+      <select name="activo" class="form-select" [(ngModel)]="findRequest.filter.enabled" #enabled="ngModel">
         <option value="">{{ "form.select" | translate }}</option>
         <option value="true">{{ "form.yes" | translate }}</option>
         <option value="false">{{ "form.no" | translate }}</option>
@@ -86,7 +66,11 @@
           {{ "user.email" | translate }}
           <em class="float-right" [ngClass]="getSortIcon('email')"></em>
         </th>
-        <th id="tableActions">Actions</th>
+        <th id="userEnabled" class="sortable" (click)="sort('enabled')">
+          {{ "user.email" | translate }}
+          <em class="float-right" [ngClass]="getSortIcon('enabled')"></em>
+        </th>
+        <th id="tableActions">{{"user.actions" | translate}}</th>
       </tr>
     </thead>
     <tbody>
@@ -94,27 +78,22 @@
         <td headers="userId">{{ user.id }}</td>
         <td headers="userName">{{ user.name }}</td>
         <td headers="userEmail">{{ user.email }}</td>
+        <td headers="userEnabled">{{user.enabled}}</td>
         <td headers="tableActions" class="actions">
           <a class="btn btn-light" [routerLink]="['.', user.id]">
             <em class="oi oi-pencil"></em>
           </a>
           <a class="btn btn-light" (click)="remove(user)" href="javascript:;">
-            <em
-              class="oi"
-              [ngClass]="{
+            <em class="oi" [ngClass]="{
                 'oi-trash': user.accountNonLocked,
                 'oi-check': !user.accountNonLocked
-              }"
-            ></em>
+              }"></em>
           </a>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <app-pagination
-    [resultObject]="resultObject"
-    (pageChanged)="showPage($event)"
-    (sizeChanged)="changeSize($event)"
-  ></app-pagination>
+  <app-pagination [resultObject]="resultObject" (pageChanged)="showPage($event)"
+    (sizeChanged)="changeSize($event)"></app-pagination>
 </fieldset>

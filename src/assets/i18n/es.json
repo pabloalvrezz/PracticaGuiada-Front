@@ -65,6 +65,7 @@
         "language": "Idioma",
         "enabled": "Habilitado",
         "username": "Nombre de usuario",
+        "actions": "Acciones",
         "password": "Contraseña",
         "edit-user-title": "Editar usuario: {{name}}",
         "create-user-title": "Crear nuevo usuario"
