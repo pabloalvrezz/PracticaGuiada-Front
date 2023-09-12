@@ -3,9 +3,7 @@
     <h2>{{ "product.title" | translate }}</h2>
   </div>
   <div class="col-lg-2 text-end actions">
-    <a routerLink="create" class="btn btn-primary"
-      ><em class="oi oi-plus"></em> {{ "product.create" | translate }}</a
-    >
+    <a routerLink="create" class="btn btn-primary"><em class="oi oi-plus"></em> {{ "product.create" | translate }}</a>
   </div>
 </div>
 
@@ -14,34 +12,29 @@
     {{ "form.search-form" | translate }}
   </legend>
   <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="name" class="form-label">{{
         "product.name" | translate
-      }}</label>
+        }}</label>
       <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          placeholder="{{ 'product.name' | translate }}"
-          aria-describedby="name-addon"
-          [(ngModel)]="findRequest.filter.name"
-          #name="ngModel"
-        />
+        <input type="text" class="form-control" name="name" placeholder="{{ 'product.name' | translate }}"
+          aria-describedby="name-addon" [(ngModel)]="findRequest.filter.name" #name="ngModel" />
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="stock" class="form-label">{{
         "product.stock" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        name="stock"
-        placeholder="{{ 'product.stock' | translate }}"
-        [(ngModel)]="findRequest.filter.stock"
-        #name="ngModel"
-      />
+        }}</label>
+      <input type="text" class="form-control" name="stock" placeholder="{{ 'product.stock' | translate }}"
+        [(ngModel)]="findRequest.filter.stock" #name="ngModel" />
+    </div>
+
+    <div class="col-md-4">
+      <label for="price" class="form-label">{{
+        "product.price" | translate
+        }}</label>
+      <input type="text" class="form-control" name="price" placeholder="{{ 'product.price' | translate }}"
+        [(ngModel)]="findRequest.filter.activePrice" #name="ngModel" />
     </div>
 
     <div class="form-group">
@@ -70,7 +63,7 @@
         <th id="productEnablled" class="sortable" (click)="sort('enabled')">
           {{ "product.enabled" | translate }}
         </th>
-        <th id="productActions" class="sortable" (click)="sort('price')">
+        <th id="productActions" class="sortable" (click)="sort('activePrice')">
           {{ "product.price" | translate }}
         </th>
         <th id="productActions" class="sortable">
@@ -85,36 +78,26 @@
         <td headers="productEnabled">{{ product.enabled }}</td>
         <td headers="productCuantity">
           {{
-            product.activePrice === 0
-            ? "Todavía no existe precio"
-            : product.activePrice + '$'
-          }} 
+          product.activePrice === 0
+          ? "Todavía no existe precio"
+          : product.activePrice + '$'
+          }}
         </td>
         <td headers="tableActions" class="actions">
           <a class="btn btn-light" [routerLink]="['.', product.id]">
             <em class="oi oi-pencil"></em>
           </a>
-          <a
-            class="btn btn-light"
-            (click)="remove(product)"
-            href="javascript:;"
-          >
-            <em
-              class="oi"
-              [ngClass]="{
+          <a class="btn btn-light" (click)="remove(product)" href="javascript:;">
+            <em class="oi" [ngClass]="{
                 'oi-trash': product.enabled,
                 'oi-check': !product.enabled
-              }"
-            ></em>
+              }"></em>
           </a>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <app-pagination
-    [resultObject]="resultObject"
-    (pageChanged)="showPage($event)"
-    (sizeChanged)="changeSize($event)"
-  ></app-pagination>
+  <app-pagination [resultObject]="resultObject" (pageChanged)="showPage($event)"
+    (sizeChanged)="changeSize($event)"></app-pagination>
 </fieldset>

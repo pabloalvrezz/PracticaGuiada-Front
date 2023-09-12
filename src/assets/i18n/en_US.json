@@ -34,7 +34,7 @@
     "menu" : {
         "home": "Welcome",
         "users" : "Users",
-        "logout" : "Log out"
+        "logout" : "Searcher"
     },
     "login" : {
         "form" : {

@@ -30,6 +30,8 @@ export class ProductService extends AbstractService {
       findRequest.filter.description
     );
     parameters = Helper.addParam(parameters, 'tipo', findRequest.filter.tipo);
+    parameters = Helper.addParam(parameters, 'activePrice', findRequest.filter.activePrice);
+    parameters = Helper.addParam(parameters, 'stock', findRequest.filter.stock);
 
     // Pagination params
     parameters = Helper.addPaginationParams(

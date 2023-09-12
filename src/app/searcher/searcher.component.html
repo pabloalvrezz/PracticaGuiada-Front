@@ -37,7 +37,7 @@
         </legend>
         <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
           <div class="col-md-4">
-            <label for="name" class="form-label">{{
+            <label (click)="sort('name')" for="name" class="form-label">{{
               "product.name" | translate
               }}</label>
             <div class="input-group">
@@ -47,7 +47,7 @@
           </div>
 
           <div class="col-md-4">
-            <label for="description" class="form-label">{{
+            <label (click)="sort('description')" for="description" class="form-label">{{
               "product.description" | translate
               }}</label>
             <input type="text" class="form-control" name="description"
@@ -56,7 +56,7 @@
           </div>
 
           <div class="col-md-4">
-            <label for="tipo" class="form-label">{{
+            <label (click)="sort('tipo')" for="tipo" class="form-label">{{
               "product.type" | translate
               }}</label>
             <select name="tipo" class="form-select" [(ngModel)]="findRequest.filter.tipo" #tipo="ngModel">
@@ -79,14 +79,13 @@
 
 
     <div class="container-fluid row" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
-      <h1 style="text-align: center">{{"search.products" | translate}}</h1>
+      <h1 style="text-align: center" class="text-uppercase">{{"search.products" | translate}}</h1>
       <div class="col-xl-4 col-lg-4 col-md-6 mb-4" *ngFor="let product of searchResult">
-        <div class="bg-white rounded shadow-sm"><img src={{product.url}} alt="" class="img-fluid card-img-top"
+        <div class="bg-white rounded shadow"><img src={{product.url}} alt="" class="img-fluid card-img-top"
             alt="Imagen no encontrada">
-          <div class="p-4">
-            <h5> {{product.name}} {{product.activePrice}}$</h5>
-            <p class="small text-muted mb-1">{{product.description}}</p>
-            <div class="mb-0">
+          <div class="p-4 border border-secondary">
+            <h5> {{product.name}}</h5>
+            <div class="mb-1">
               <button *ngIf="product.enabled" class="btn btn-outline-secondary"
                 [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
                 <span *ngIf="!product.enabled" class="badge badge-danger">{{"search.disable" | translate}}</span>
