@@ -87,9 +87,9 @@
             <h5> {{product.name}} {{product.activePrice}}$</h5>
             <p class="small text-muted mb-1">{{product.description}}</p>
             <div class="mb-0">
-              <button *ngIf="product.enabled" class="btn btn-primary"
+              <button *ngIf="product.enabled" class="btn btn-outline-secondary"
                 [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
-                <span *ngIf="!product.enabled" class="badge badge-info">{{"search.disable" | translate}}</span>
+                <span *ngIf="!product.enabled" class="badge badge-danger">{{"search.disable" | translate}}</span>
             </div>
           </div>
         </div>
