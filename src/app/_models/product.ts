@@ -4,6 +4,10 @@
 
 import { Prices } from "./price";
 
+export enum Type{
+  JUGUETE, FRUTAS, VERDURAS, DECORACION, ROPA
+}
+
 export class Product {
   /**
    * Id del producto
@@ -39,4 +43,9 @@ export class Product {
    * Url de la imagen del producto
    */
   url!: string;
+
+  /**
+   * Tipo del producto
+   */
+  tipo!: Type 
 }

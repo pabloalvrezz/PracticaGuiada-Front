@@ -36,7 +36,7 @@
           {{ "form.search-form" | translate }}
         </legend>
         <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label for="name" class="form-label">{{
               "product.name" | translate
               }}</label>
@@ -45,7 +45,8 @@
                 aria-describedby="name-addon" [(ngModel)]="findRequest.filter.name" #name="ngModel" />
             </div>
           </div>
-          <div class="col-md-6">
+
+          <div class="col-md-4">
             <label for="description" class="form-label">{{
               "product.description" | translate
               }}</label>
@@ -53,6 +54,17 @@
               placeholder="{{ 'product.description' | translate }}" [(ngModel)]="findRequest.filter.description"
               #name="ngModel" />
           </div>
+
+          <div class="col-md-4">
+            <label for="tipo" class="form-label">{{
+              "product.type" | translate
+              }}</label>
+            <select name="tipo" class="form-select" [(ngModel)]="findRequest.filter.tipo" #tipo="ngModel">
+              <option value="">{{ "form.clean" | translate }}</option>
+              <option *ngFor="let type of types" value="{{type}}">{{ type | translate }}</option>
+            </select>
+          </div>
+
 
           <div class="form-group ">
             <div class="offset-sm-2 col-sm-10 text-end">
@@ -66,26 +78,27 @@
     </div>
 
 
-    <div class="container-fluid " infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+    <div class="container-fluid row" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
       <h1 style="text-align: center">{{"search.products" | translate}}</h1>
-      <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-6 mb-4" *ngFor="let product of searchResult">
-          <div class="bg-white rounded shadow-sm"><img src={{product.url}} alt=""
-              class="img-fluid card-img-top" alt="Imagen no encontrada">
-            <div class="p-4">
-              <h5> {{product.name}} {{product.activePrice}}$</h5>
-              <p class="small text-muted mb-1">{{product.description}}</p>
-              <div class="mb-0">
-                <button class="btn btn-primary"
-                  [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
-              </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 mb-4" *ngFor="let product of searchResult">
+        <div class="bg-white rounded shadow-sm"><img src={{product.url}} alt="" class="img-fluid card-img-top"
+            alt="Imagen no encontrada">
+          <div class="p-4">
+            <h5> {{product.name}} {{product.activePrice}}$</h5>
+            <p class="small text-muted mb-1">{{product.description}}</p>
+            <div class="mb-0">
+              <button *ngIf="product.enabled" class="btn btn-primary"
+                [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
+                <span *ngIf="!product.enabled" class="badge badge-info">{{"search.disable" | translate}}</span>
             </div>
           </div>
         </div>
       </div>
-      <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2 mb-2"
-        (click)="scrollTop()">{{"search.button" | translate}}</button>
     </div>
+    <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2 mb-2"
+      (click)="scrollTop()">{{"search.button" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+      </svg></button>
 
   </div>
 

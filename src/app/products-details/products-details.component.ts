@@ -1,7 +1,7 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../_models/product';
+import { Product, Type } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
@@ -44,6 +44,11 @@ export class ProductsDetailsComponent implements OnInit {
    *Estado actual del producto
    */
   enabled: boolean | null = true;
+
+  /**
+   * Tipos posibles de cada producto
+   */
+  type: Array<string> = ['JUGUETE', 'FRUTAS', 'VERDURAS', 'DECORACION', 'ROPA'];
 
   /**
    *Productos que no tiene asignado ningun precio

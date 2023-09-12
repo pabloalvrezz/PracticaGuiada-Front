@@ -64,7 +64,7 @@
     </div>
 
 
-    <div class="col-12">
+    <div class="col-6">
       <label for="enabled" class="form-label">{{
         "product.enabled" | translate
       }}</label>
@@ -78,6 +78,22 @@
         #enabled="ngModel"
         [ngModelOptions]="{ standalone: true }"
       />
+    </div>
+    <div class="col-md-6">
+      <label for="tipo" class="form-label">{{
+        "product.tipo" | translate
+      }}</label>
+      <ng-select
+        id="tipo"
+        name="tipo"
+        [multiple]="false"
+        [items]="type"
+        [closeOnSelect]="true"
+        [searchable]="false"
+        placeholder="{{ 'product.type' | translate }}"
+        [(ngModel)]="product.tipo"
+      >
+      </ng-select>
     </div>
     <div class="col-md-6">
       <label for="stock" class="form-label">{{

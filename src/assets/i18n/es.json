@@ -29,7 +29,8 @@
         },
         "select": "Selecciona ...",
         "yes": "Sí",
-        "no": "No"
+        "no": "No",
+        "clean": "Limpiar"
     },
     "menu" : {
         "home": "Inicio",
@@ -81,7 +82,8 @@
       "disponibility": "Disponibilidad",
       "actions": "Acciones",
       "edit-product-title": "Editar: {{description}}",
-      "url": "Url de la imagen del producto"
+      "url": "Url de la imagen del producto",
+      "type": "Tipo de producto"
     },
     "price":{
       "title": "Precios",
@@ -99,12 +101,14 @@
         "title": "Tienda Izertis ",
         "details": "Detalles",
         "add": "Comprar",
+        "outStock": "Sin stock",
         "button": "Volver arriba",
         "products": "Productos",
         "logIn": "Iniciar Sesión",
         "logOut": "Salir",
         "welcome": "Bienvenido",
-        "backOffice": "Ir al panel de administrador"
+        "backOffice": "Ir al panel de administrador",
+        "disable": "Producto deshabilitado"
 
     },
     "details":{
@@ -112,7 +116,8 @@
         "description": "Descripción del producto",
         "correctTitle": "Producto añadido de forma correcta",
         "Price": "Precio",
-        "return": "Volver"
+        "return": "Volver",
+        "stock": "Unidades"
     }
 
 }

@@ -29,7 +29,8 @@
         },
         "select": "Select ...",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "clean": "Clean"
     },
     "menu" : {
         "home": "Welcome",
@@ -80,7 +81,8 @@
       "create-product-title": "Create new product",
       "edit-product-title": "Edit: {{description}}",
       "actions": "Actions",
-      "url": "Url of the image of the product"
+      "url": "Url of the image of the product",
+      "type": "Type of product"
 
     },
    "price":{
@@ -101,17 +103,20 @@
         "button": "Go up",
         "logIn": "Log in",
         "add": "Buy",
+        "outStock": "Out of stock",
         "products": "Products",
         "logOut": "Log out",
         "welcome": "Bienvenido",
-        "backOffice": "Go to the BackOffice"
+        "backOffice": "Go to the BackOffice",
+        "disable": "Disabled product"
     },
     "details":{
         "description": "Description",
         "title": "Details of the product",
         "price": "Price",
         "correctTitle": "Producto added to your shopping bag",
-        "return": "Go back"
+        "return": "Go back",
+        "stock": "Stock"
     }
 
 }

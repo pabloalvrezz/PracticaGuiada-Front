@@ -30,9 +30,12 @@ export class SearcherComponent
   public hideScrollHeight = 200;
   public isLogged = true;
   public isAdmin = false;
+  public types: Array<string> = ['JUGUETE', 'FRUTAS', 'VERDURAS', 'DECORACION', 'ROPA'];
 
   private lastPage = 5;
   private actualPage: number;
+
+
 
   constructor(
     router: Router,
