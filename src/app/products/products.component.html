@@ -16,6 +16,7 @@
       <label for="name" class="form-label">{{
         "product.name" | translate
         }}</label>
+        
       <div class="input-group">
         <input type="text" class="form-control" name="name" placeholder="{{ 'product.name' | translate }}"
           aria-describedby="name-addon" [(ngModel)]="findRequest.filter.name" #name="ngModel" />
@@ -56,15 +57,19 @@
       <tr>
         <th id="productname" class="sortable" (click)="sort('name')">
           {{ "product.name" | translate }}
+          <em class="float-right" [ngClass]="getSortIcon('name')"></em>
         </th>
         <th id="productStock" class="sortable" (click)="sort('stock')">
           {{ "product.stock" | translate }}
+          <em class="float-right" [ngClass]="getSortIcon('stock')"></em>
         </th>
         <th id="productEnablled" class="sortable" (click)="sort('enabled')">
           {{ "product.enabled" | translate }}
+          <em class="float-right" [ngClass]="getSortIcon('enabled')"></em>
         </th>
         <th id="productActions" class="sortable" (click)="sort('activePrice')">
           {{ "product.price" | translate }}
+          <em class="float-right" [ngClass]="getSortIcon('activePrice')"></em>
         </th>
         <th id="productActions" class="sortable">
           {{ "product.actions" | translate }}

@@ -10,11 +10,9 @@ import { Prices } from '../_models/price';
 @Component({
   selector: 'app-products-details',
   templateUrl: './products-details.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class ProductsDetailsComponent implements OnInit {
-
   /**
    * Datos del producto actual
    */
@@ -33,7 +31,7 @@ export class ProductsDetailsComponent implements OnInit {
   /**
    * Decripcion actual del producto
    */
-  description: string | null = ''
+  description: string | null = '';
 
   /**
    *Stock actual del producto
@@ -60,11 +58,13 @@ export class ProductsDetailsComponent implements OnInit {
    */
   prices: Prices = new Prices();
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private translate: TranslateService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    private productService: ProductService) { }
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
     this.productId = 0;
@@ -72,29 +72,27 @@ export class ProductsDetailsComponent implements OnInit {
     this.stock = 0;
     this.enabled = true;
     this.prices.cuantity = 0;
-    
+
     this.route.params.subscribe({
       next: (params: Params) => {
-        console.log("PAramss")
-        console.log(params)
+        console.log('PAramss');
+        console.log(params);
         this.productId = params['id'];
         if (this.productId) {
           this.createMode = false;
-          
-          this.productService.get(this.productId).subscribe(
-            ((product: Product) => {
+
+          this.productService
+            .get(this.productId)
+            .subscribe((product: Product) => {
               this.product = product;
-              console.log(this.product.description)
-            })
-            );
-          }
-          else {
-            this.createMode = true;
-            this.product.enabled = true;
-          }
+              console.log(this.product.description);
+            });
+        } else {
+          this.createMode = true;
+          this.product.enabled = true;
         }
-      });
-      
+      },
+    });
   }
 
   /**
@@ -103,10 +101,8 @@ export class ProductsDetailsComponent implements OnInit {
   save(): void {
     let observable: Observable<Product>;
 
-    if (this.createMode)
-      observable = this.productService.save(this.product)
-    else
-      observable = this.productService.update(this.product)
+    if (this.createMode) observable = this.productService.save(this.product);
+    else observable = this.productService.update(this.product);
 
     observable.subscribe({
       next: (product: Product) => {
@@ -117,12 +113,25 @@ export class ProductsDetailsComponent implements OnInit {
           this.product = product;
         }
 
-        this.toastr.success(this.translate.instant('toast.success-saving', this.translate.instant('toast.success')));
+        this.toastr.success(
+          this.translate.instant(
+            'toast.success-saving',
+            this.translate.instant('toast.success')
+          )
+        );
       },
       error: (error) => {
+        setTimeout(function () {
+          window.location.reload();
+        }, 600);
         console.error(error);
-        this.toastr.error(this.translate.instant('toast.error-saving', this.translate.instant('toast.error')));
-      }
+        this.toastr.error(
+          this.translate.instant(
+            'toast.error-saving',
+            this.translate.instant('toast.error')
+          )
+        );
+      },
     });
   }
 

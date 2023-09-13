@@ -4,10 +4,10 @@
 <body>
   <div class="container-fluid row mt-2">
     <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
-      <button *ngIf="!isLogged" [routerLink]="['/login']" type="button"
+      <button *ngIf="!this.loginService.isLoggedIn()" [routerLink]="['/login']" type="button"
         class="btn btn-outline-secondary">{{"search.logIn"
         | translate}}</button>
-      <button *ngIf="isLogged" (click)="this.logOut()" type="button" class="btn btn-outline-secondary"><svg
+      <button *ngIf="this.loginService.isLoggedIn()" (click)="this.logOut()" type="button" class="btn btn-outline-secondary"><svg
           xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right"
           viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -15,7 +15,7 @@
           <path fill-rule="evenodd"
             d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
         </svg></button>
-      <h6 *ngIf="isLogged">{{"search.welcome" | translate}} {{this.loginService.getCurrentUser()?.name}}</h6>
+      <h6 *ngIf="this.loginService.isLoggedIn()">{{"search.welcome" | translate}} {{this.loginService.getCurrentUser()?.name}}</h6>
     </div>
     <div class="container-fluid col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end">
       <button *ngIf="statusChecked()" [routerLink]="['/main/home']" type="button"
@@ -37,9 +37,11 @@
         </legend>
         <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
           <div class="col-md-4">
-            <label (click)="sort('name')" for="name" class="form-label">{{
-              "product.name" | translate
-              }}</label>
+          
+              <label (click)="sort('name')" for="name" class="form-label">{{
+                "product.name" | translate
+                }}</label>
+              <em (click)="sort('name')" class="float-right" [ngClass]="getSortIcon('name')"></em>
             <div class="input-group">
               <input type="text" class="form-control" name="name" placeholder="{{ 'product.name' | translate }}"
                 aria-describedby="name-addon" [(ngModel)]="findRequest.filter.name" #name="ngModel" />
@@ -50,6 +52,9 @@
             <label (click)="sort('description')" for="description" class="form-label">{{
               "product.description" | translate
               }}</label>
+
+            <em (click)="sort('description')" class="float-right" [ngClass]="getSortIcon('description')"></em>
+
             <input type="text" class="form-control" name="description"
               placeholder="{{ 'product.description' | translate }}" [(ngModel)]="findRequest.filter.description"
               #name="ngModel" />
@@ -59,6 +64,8 @@
             <label (click)="sort('tipo')" for="tipo" class="form-label">{{
               "product.type" | translate
               }}</label>
+            <em (click)="sort('tipo')" class="float-right" [ngClass]="getSortIcon('tipo')"></em>
+
             <select name="tipo" class="form-select" [(ngModel)]="findRequest.filter.tipo" #tipo="ngModel">
               <option value="">{{ "form.clean" | translate }}</option>
               <option *ngFor="let type of types" value="{{type}}">{{ type | translate }}</option>
@@ -88,15 +95,17 @@
             <div class="mb-1">
               <button *ngIf="product.enabled" class="btn btn-outline-secondary"
                 [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
-                <span *ngIf="!product.enabled" class="badge badge-danger">{{"search.disable" | translate}}</span>
+              <span *ngIf="!product.enabled" class="badge badge-danger">{{"search.disable" | translate}}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2 mb-2"
-      (click)="scrollTop()">{{"search.button" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+      (click)="scrollTop()">{{"search.button" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="16"
+        height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
       </svg></button>
 
   </div>

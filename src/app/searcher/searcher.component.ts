@@ -17,6 +17,7 @@ import {
 } from '../_helpers/search';
 import { ProductService } from '../_services/product.service';
 import { LoginService } from '../_services/login.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'selector-name',
@@ -28,15 +29,14 @@ export class SearcherComponent
   public showGoUpButton: boolean;
   public showScrollHeight = 400;
   public hideScrollHeight = 200;
-  public isLogged = true;
-  public isAdmin = false;
+  public isAdmin: boolean = false; // variable que controalra si el usuario es admin
+
+  // array de categorias de los productos
   public types: Array<string> = ['JUGUETE', 'FRUTAS', 'VERDURAS', 'DECORACION', 'ROPA'];
 
   private lastPage = 5;
   private actualPage: number;
-
-
-
+  
   constructor(
     router: Router,
     translate: TranslateService,
@@ -52,7 +52,7 @@ export class SearcherComponent
   protected override findInternal(
     findRequest: FindRequest
   ): Observable<Page<Product>> {
-    return this.productService.searchProducts(findRequest);
+    return this.productService.searchActiveProducts(findRequest);
   }
   protected override removeInternal(
     entity: Product
@@ -62,7 +62,7 @@ export class SearcherComponent
   protected override getDefaultOrder(): Order {
     return {
       property: 'id',
-      direction: Direction.ASC,
+      direction: Direction.DESC,
     };
   }
 
@@ -75,7 +75,8 @@ export class SearcherComponent
     data.forEach(data => {
       localStorage.removeItem(data);
     })
-    this.isLogged = false
+    this.isAdmin = false
+    this.loginService.logout()
   }
 
   /**
@@ -85,7 +86,7 @@ export class SearcherComponent
     if(this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
     this.isAdmin = true
 
-    if(this.isAdmin && this.isLogged)
+    if(this.isAdmin)
       return true
     return false
   }

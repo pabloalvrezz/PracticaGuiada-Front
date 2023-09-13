@@ -92,7 +92,7 @@ export class PricesDetailsComponent extends PaginatedSearchComponent<Product> im
    * @returns un observable con todos los productos
    */
   protected override findInternal(findRequest: FindRequest): Observable<Page<Product>> {
-    return this.productService.findAvaible(findRequest)
+    return this.productService.searchActiveProducts(findRequest)
   }
   protected override removeInternal(entity: Product): Observable<{} | Response> {
     throw new Error('Method not implemented.');

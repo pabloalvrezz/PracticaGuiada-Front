@@ -30,7 +30,11 @@ export class ProductService extends AbstractService {
       findRequest.filter.description
     );
     parameters = Helper.addParam(parameters, 'tipo', findRequest.filter.tipo);
-    parameters = Helper.addParam(parameters, 'activePrice', findRequest.filter.activePrice);
+    parameters = Helper.addParam(
+      parameters,
+      'activePrice',
+      findRequest.filter.activePrice
+    );
     parameters = Helper.addParam(parameters, 'stock', findRequest.filter.stock);
 
     // Pagination params
@@ -38,8 +42,6 @@ export class ProductService extends AbstractService {
       parameters,
       findRequest.pageRequest
     );
-    console.log('Params');
-    console.log(parameters);
 
     return this.httpClient
       .get<Page<Product>>(Helper.getUrl('/product/search'), {
@@ -49,11 +51,35 @@ export class ProductService extends AbstractService {
   }
 
   /**
-   * Realiza la consulta de productos que no tiene asignado ningun precio
+   * Realiza la consulta de todos los productos activos
    */
-  findAvaible(findRequest: FindRequest): Observable<Page<Product>> {
+  searchActiveProducts(findRequest: FindRequest): Observable<Page<Product>> {
+    // Filter params
+    let parameters = new HttpParams();
+    parameters = Helper.addParam(parameters, 'name', findRequest.filter.name);
+    parameters = Helper.addParam(
+      parameters,
+      'description',
+      findRequest.filter.description
+    );
+    parameters = Helper.addParam(parameters, 'tipo', findRequest.filter.tipo);
+    parameters = Helper.addParam(
+      parameters,
+      'activePrice',
+      findRequest.filter.activePrice
+    );
+    parameters = Helper.addParam(parameters, 'stock', findRequest.filter.stock);
+
+    // Pagination params
+    parameters = Helper.addPaginationParams(
+      parameters,
+      findRequest.pageRequest
+    );
+
     return this.httpClient
-      .get<Page<Product>>(Helper.getUrl('/product/search'))
+      .get<Page<Product>>(Helper.getUrl('/product/searchActive'),{
+        params: parameters
+      })
       .pipe(catchError(this.handleError));
   }
 
