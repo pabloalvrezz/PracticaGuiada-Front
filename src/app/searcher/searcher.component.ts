@@ -23,36 +23,40 @@ import { LoginComponent } from '../login/login.component';
   selector: 'selector-name',
   templateUrl: 'searcher.component.html',
 })
-export class SearcherComponent
-  extends PaginatedSearchComponent<Product>
-{
+export class SearcherComponent extends PaginatedSearchComponent<Product> {
   public showGoUpButton: boolean;
   public showScrollHeight = 400;
   public hideScrollHeight = 200;
   public isAdmin: boolean = false; // variable que controalra si el usuario es admin
 
   // array de categorias de los productos
-  public types: Array<string> = ['JUGUETE', 'FRUTAS', 'VERDURAS', 'DECORACION', 'ROPA'];
+  public types: Array<string> = [
+    'JUGUETE',
+    'FRUTAS',
+    'VERDURAS',
+    'DECORACION',
+    'ROPA',
+  ];
 
   private lastPage = 5;
   private actualPage: number;
-  
+
   constructor(
     router: Router,
     translate: TranslateService,
     toastr: ToastrService,
     public loginService: LoginService,
-    public productService: ProductService,
+    public productService: ProductService
   ) {
     super(router, translate, toastr);
     this.actualPage = 1;
     this.showGoUpButton = false;
   }
- 
+
   protected override findInternal(
     findRequest: FindRequest
   ): Observable<Page<Product>> {
-    return this.productService.findAvaible(findRequest);
+      return this.productService.findAvaible(findRequest);
   }
   protected override removeInternal(
     entity: Product
@@ -69,26 +73,25 @@ export class SearcherComponent
   /**
    * Metodo que usaremos para cerrar la sesión del usuario
    */
-  logOut(){
+  logOut() {
     // borraremos todos los datos almacenamos del usuario
     let data = ['access_token', 'current_user', 'refresh_token', 'username'];
-    data.forEach(data => {
+    data.forEach((data) => {
       localStorage.removeItem(data);
-    })
-    this.isAdmin = false
-    this.loginService.logout()
+    });
+    this.isAdmin = false;
+    this.loginService.logout();
   }
 
   /**
    * Metodo que usaremos para controlar el estado de las credenciales del usuario
    */
-  statusChecked(): boolean{
-    if(this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
-    this.isAdmin = true
+  statusChecked(): boolean {
+    if (this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
+      this.isAdmin = true;
 
-    if(this.isAdmin)
-      return true
-    return false
+    if (this.isAdmin) return true;
+    return false;
   }
 
   /**

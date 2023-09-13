@@ -66,8 +66,8 @@ export class SearcherDetailsComponent implements OnInit {
 
     observable.subscribe({
       next: () => {
-        if (this.product.stock < 1) {
-          this.toastrService.error('El producto seleccionado no tiene stock');
+        if (this.product.stock === 0) {
+          this.toastrService.error('El producto seleccionado se ha quedado sin stock');
         } else {
           this.toastrService.success(
             'Producto añadido al carrito correctamente'

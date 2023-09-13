@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-  
-  <body>
+
+<body>
   <app-spinner></app-spinner>
   <div class="container-fluid row mt-2">
     <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
       <button *ngIf="!this.loginService.isLoggedIn()" [routerLink]="['/login']" type="button"
         class="btn btn-outline-secondary">{{"search.logIn"
         | translate}}</button>
-      <button *ngIf="this.loginService.isLoggedIn()" (click)="this.logOut()" type="button" class="btn btn-outline-secondary"><svg
-          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right"
-          viewBox="0 0 16 16">
+      <button *ngIf="this.loginService.isLoggedIn()" (click)="this.logOut()" type="button"
+        class="btn btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
             d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
           <path fill-rule="evenodd"
             d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
         </svg></button>
-      <h6 *ngIf="this.loginService.isLoggedIn()">{{"search.welcome" | translate}} {{this.loginService.getCurrentUser()?.name}}</h6>
+      <h6 *ngIf="this.loginService.isLoggedIn()">{{"search.welcome" | translate}}
+        {{this.loginService.getCurrentUser()?.name}}</h6>
     </div>
     <div class="container-fluid col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end">
       <button *ngIf="statusChecked()" [routerLink]="['/main/home']" type="button"
@@ -38,11 +39,11 @@
         </legend>
         <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
           <div class="col-md-4">
-          
-              <label (click)="sort('name')" for="name" class="form-label">{{
-                "product.name" | translate
-                }}</label>
-              <em (click)="sort('name')" class="float-right" [ngClass]="getSortIcon('name')"></em>
+
+            <label (click)="sort('name')" for="name" class="form-label">{{
+              "product.name" | translate
+              }}</label>
+            <em (click)="sort('name')" class="float-right" [ngClass]="getSortIcon('name')"></em>
             <div class="input-group">
               <input type="text" class="form-control" name="name" placeholder="{{ 'product.name' | translate }}"
                 aria-describedby="name-addon" [(ngModel)]="findRequest.filter.name" #name="ngModel" />
@@ -94,8 +95,12 @@
           <div class="p-4 border border-secondary">
             <h5> {{product.name}}</h5>
             <div class="mb-1">
-              <button *ngIf="product.enabled" class="btn btn-outline-secondary"
+              <button *ngIf="product.enabled && product.stock >= 1" class="btn btn-outline-secondary"
                 [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
+              <button *ngIf="product.stock < 1 && product.enabled" type="button"
+                class="btn btn-danger">{{"search.outStock"
+                |
+                translate}}</button>
               <span *ngIf="!product.enabled" class="badge badge-danger">{{"search.disable" | translate}}</span>
             </div>
           </div>
