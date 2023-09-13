@@ -24,7 +24,6 @@ export class EnabledGuard implements CanActivate {
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private _route: ActivatedRoute,
     private httpClient: HttpClient
   ) {}
 
@@ -39,10 +38,14 @@ export class EnabledGuard implements CanActivate {
     let aux = Number.parseFloat(next.paramMap.get('id')!);
 
     this.get(aux).subscribe((product) => {
-      if (product.enabled) return true;
-      else {
-        this.router.navigate(['/search']);
-        return false;
+      if (this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR')) {
+        return true;
+      } else {
+        if (product.enabled) return true;
+        else {
+          this.router.navigate(['/search']);
+          return false;
+        }
       }
     });
 

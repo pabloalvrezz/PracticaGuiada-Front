@@ -20,12 +20,13 @@ export class AuthGuard implements CanActivate {
     if (this.loginService.isLoggedIn()) {
       // only admin users can activate the route
       if(this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
-      // logged in so return true
+      // logged as admin so return true
         return true;
+        this.router.navigate(['/search']);
       return false;
     } else {
       // not logged in so redirect to login page
-      this.router.navigate(['/login']);
+      this.router.navigate(['/search']);
       return false;
     }
   }

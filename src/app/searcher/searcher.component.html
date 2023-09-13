@@ -1,8 +1,8 @@
-<app-spinner></app-spinner>
 <!DOCTYPE html>
 <html>
-
-<body>
+  
+  <body>
+  <app-spinner></app-spinner>
   <div class="container-fluid row mt-2">
     <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
       <button *ngIf="!this.loginService.isLoggedIn()" [routerLink]="['/login']" type="button"

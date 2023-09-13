@@ -20,34 +20,48 @@ export class LoginComponent implements OnInit {
    */
   model: any = {};
 
-  constructor(private router: Router, 
-              private translate: TranslateService, 
-              private toastr: ToastrService, 
-              private loginService: LoginService,
-              private userService: UserService) { }
+  constructor(
+    private router: Router,
+    private translate: TranslateService,
+    private toastr: ToastrService,
+    private loginService: LoginService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-      this.loginService.logout();
-    }
+    this.loginService.logout();
+  }
 
   /**
    * Realiza el login del usuario.
    */
   login() {
-    this.loginService.login(this.model.username, this.model.password).subscribe({
-      next: (result: Response | {}) => {
-        if (result) {
-          this.userService.getUserData().subscribe((user: User) => {
-            localStorage.setItem('current_user', JSON.stringify(user));
-          });
-          this.router.navigate(['/search']);
-        } else {
-          this.toastr.error(this.translate.instant('login.error.invalid-body'), this.translate.instant('login.error.invalid'));
-        }
-      },
-      error: (error: Response) => {
-        this.toastr.error(this.translate.instant('login.error.invalid-body'), this.translate.instant('login.error.invalid'));
-      }
-    });
+    this.loginService
+      .login(this.model.username, this.model.password)
+      .subscribe({
+        next: (result: Response | {}) => {
+          if (result) {
+            this.userService.getUserData().subscribe((user: User) => {
+              localStorage.setItem('current_user', JSON.stringify(user));
+            });
+            this.router.navigate(['/search']);
+          } else {
+            this.toastr.error(
+              this.translate.instant('login.error.invalid-body'),
+              this.translate.instant('login.error.invalid')
+            );
+          }
+        },
+        error: (error: Response) => {
+          this.toastr.error(
+            this.translate.instant('login.error.invalid-body'),
+            this.translate.instant('login.error.invalid')
+          );
+        },
+      });
+  }
+
+  wait(ms: number) {
+   setTimeout(() => this.router.navigate(['/search']), 1000);
   }
 }
