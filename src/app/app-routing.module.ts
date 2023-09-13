@@ -14,6 +14,7 @@ import { PricesDetailsComponent } from './prices-details/prices-details.componen
 import { SearcherComponent } from './searcher/searcher.component';
 import { SearcherDetailsComponent } from './searcher_details/searcher-details.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { EnabledGuard } from './_guards/enabled.guard';
 
 /**
  * Rutas securizadas
@@ -130,6 +131,7 @@ const routes: Routes = [
   {
     path: 'product/search/details/:id',
     component: SearcherDetailsComponent,
+     canActivate: [EnabledGuard]
   },
 
   // // otherwhise redirect to main

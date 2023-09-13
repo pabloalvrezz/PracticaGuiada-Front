@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 export class SearcherDetailsComponent implements OnInit {
   product: Product = new Product();
 
-  productId!: number;
+  public productId!: number;
 
   description: string | null = '';
 
@@ -30,11 +30,12 @@ export class SearcherDetailsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.productId = 0;
+    this.productId = +this._route.snapshot.paramMap.get('id')!;
     this.description = '';
     this.stock = 0;
 

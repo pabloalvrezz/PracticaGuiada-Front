@@ -52,7 +52,7 @@ export class SearcherComponent
   protected override findInternal(
     findRequest: FindRequest
   ): Observable<Page<Product>> {
-    return this.productService.searchActiveProducts(findRequest);
+    return this.productService.findAvaible(findRequest);
   }
   protected override removeInternal(
     entity: Product

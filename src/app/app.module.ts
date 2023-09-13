@@ -48,6 +48,7 @@ import { TokenizedInterceptor } from './_interceptors/tokenized-interceptor';
 import { SearcherDetailsComponent } from './searcher_details/searcher-details.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { EnabledGuard } from './_guards/enabled.guard';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     // AuthGuard,
     LoginService,
     MenuService,
+    EnabledGuard,
     UserService,
     {
       provide: HTTP_INTERCEPTORS,

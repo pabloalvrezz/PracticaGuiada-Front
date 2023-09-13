@@ -48,11 +48,6 @@ export class ProductsDetailsComponent implements OnInit {
   type: Array<string> = ['JUGUETE', 'FRUTAS', 'VERDURAS', 'DECORACION', 'ROPA'];
 
   /**
-   *Productos que no tiene asignado ningun precio
-   */
-  productosDisponibles: Product[] = [];
-
-  /**
    * Datos del precio actual del producto
    */
   prices: Prices = new Prices();
@@ -74,21 +69,22 @@ export class ProductsDetailsComponent implements OnInit {
 
     this.route.params.subscribe({
       next: (params: Params) => {
+        console.log(this.route.params)
         this.productId = params['id'];
         if (this.productId) {
           this.createMode = false;
-
           this.productService
-            .get(this.productId)
-            .subscribe((product: Product) => {
-              this.product = product;
-            });
+          .get(this.productId)
+          .subscribe((product: Product) => {
+            this.product = product;
+          });
         } else {
           this.createMode = true;
           this.product.enabled = true;
         }
       },
     });
+    
   }
 
   /**
