@@ -94,7 +94,9 @@ export class UserDetailComponent implements OnInit {
         this.toastr.success(this.translate.instant('toast.success-saving', this.translate.instant('toast.success')));
       },
       error: (error) => {
-        console.error(error);
+        setTimeout(function () {
+          window.location.reload();
+        }, 600);
         this.toastr.error(this.translate.instant('toast.error-saving', this.translate.instant('toast.error')));
       }
     });

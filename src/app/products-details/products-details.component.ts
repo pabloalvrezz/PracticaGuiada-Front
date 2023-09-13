@@ -124,7 +124,6 @@ export class ProductsDetailsComponent implements OnInit {
         setTimeout(function () {
           window.location.reload();
         }, 600);
-        console.error(error);
         this.toastr.error(
           this.translate.instant(
             'toast.error-saving',

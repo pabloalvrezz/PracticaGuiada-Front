@@ -130,7 +130,9 @@ export class PricesDetailsComponent extends PaginatedSearchComponent<Product> im
       },
 
       error: (error) => {
-        console.log(error)
+        setTimeout(function () {
+          window.location.reload();
+        }, 600);
         this.toaster?.error(this.translat?.instant('toast.error-saving', this.translat?.instant('toast.error')));
       }
     })
