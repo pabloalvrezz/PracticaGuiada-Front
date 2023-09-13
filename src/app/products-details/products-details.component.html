@@ -1,138 +1,78 @@
+<app-spinner></app-spinner>
 <fieldset>
-  <legend *ngIf="!createMode">
-    {{ "product.edit-product-title" | translate : product }}
-  </legend>
-  <legend *ngIf="createMode">
-    {{ "product.create-product-title" | translate }}
-  </legend>
+    <legend *ngIf="!createMode ">
+      {{ "product.edit-product-title" | translate : product }}
+    </legend>
+    <legend *ngIf="createMode">
+      {{ "product.create-product-title" | translate }}
+    </legend>
 
-  <form
-    class="row g-3"
-    description="form"
-    (ngSubmit)="f.form.valid && save()"
-    #f="ngForm"
-    autocomplete="false"
-    novalidate
-  >
-    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
-    <input
-      style="display: none"
-      type="text"
-      description="fakeproductdescriptionremembered"
-    />
-    <input
-      style="display: none"
-      type="password"
-      description="fakepasswordremembered"
-    />
-    <div class="col-md-12">
-      <label for="name" class="form-label">{{
-        "product.name" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': f.submitted && !name.valid }"
-        id="name"
-        description="name"
-        required
-        placeholder="{{ 'product.name' | translate }}"
-        [(ngModel)]="product.name"
-        #name="ngModel"
-        [ngModelOptions]="{ standalone: true }"
-      />
-      <div *ngIf="f.submitted && !name.valid" class="invalid-feedback">
-        {{ "form.validation.required" | translate }}
+    <form class="row g-3" description="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" autocomplete="false"
+      novalidate>
+      <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+      <input style="display: none" type="text" description="fakeproductdescriptionremembered" />
+      <input style="display: none" type="password" description="fakepasswordremembered" />
+      <div class="col-md-12">
+        <label for="name" class="form-label">{{
+          "product.name" | translate
+          }}</label>
+        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && !name.valid }" id="name"
+          description="name" required placeholder="{{ 'product.name' | translate }}" [(ngModel)]="product.name"
+          #name="ngModel" [ngModelOptions]="{ standalone: true }" />
+        <div *ngIf="f.submitted && !name.valid" class="invalid-feedback">
+          {{ "form.validation.required" | translate }}
+        </div>
       </div>
-    </div>
 
-    <div class="col-md-12">
-      <label for="url" class="form-label">{{
-        "product.url" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="url"
-        description="url"
-        required
-        placeholder="{{ 'product.url' | translate }}"
-        [(ngModel)]="product.url"
-        #url="ngModel"
-        [ngModelOptions]="{ standalone: true }"
-      />
-    </div>
+      <div class="col-md-12">
+        <label for="url" class="form-label">{{
+          "product.url" | translate
+          }}</label>
+        <input type="text" class="form-control" id="url" description="url" required
+          placeholder="{{ 'product.url' | translate }}" [(ngModel)]="product.url" #url="ngModel"
+          [ngModelOptions]="{ standalone: true }" />
+      </div>
 
 
-    <div class="col-6">
-      <label for="enabled" class="form-label">{{
-        "product.enabled" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="enabled"
-        description="enabled"
-        placeholder="{{ 'product.disponibility' | translate }}"
-        [(ngModel)]="product.enabled"
-        #enabled="ngModel"
-        [ngModelOptions]="{ standalone: true }"
-      />
-    </div>
-    <div class="col-md-6">
-      <label for="tipo" class="form-label">{{
-        "product.tipo" | translate
-      }}</label>
-      <ng-select
-        id="tipo"
-        name="tipo"
-        [multiple]="false"
-        [items]="type"
-        [closeOnSelect]="true"
-        [searchable]="false"
-        placeholder="{{ 'product.type' | translate }}"
-        [(ngModel)]="product.tipo"
-      >
-      </ng-select>
-    </div>
-    <div class="col-md-6">
-      <label for="stock" class="form-label">{{
-        "product.stock" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="stock"
-        name="stock"
-        placeholder="{{ 'product.stock' | translate }}"
-        [(ngModel)]="product.stock"
-        #stock="ngModel"
-        [ngModelOptions]="{ standalone: true }"
-      />
-    </div>
-    <div class="col-md-6">
-      <label for="stock" class="form-label">{{
-        "product.description" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="description"
-        name="description"
-        placeholder="{{ 'product.description' | translate }}"
-        [(ngModel)]="product.description"
-        #description="ngModel"
-        [ngModelOptions]="{ standalone: true }"
-      />
-    </div>
+      <div class="col-6">
+        <label for="enabled" class="form-label">{{
+          "product.enabled" | translate
+          }}</label>
+        <input type="text" class="form-control" id="enabled" description="enabled"
+          placeholder="{{ 'product.disponibility' | translate }}" [(ngModel)]="product.enabled" #enabled="ngModel"
+          [ngModelOptions]="{ standalone: true }" />
+      </div>
+      <div class="col-md-6">
+        <label for="tipo" class="form-label">{{
+          "product.type" | translate
+          }}</label>
+        <ng-select id="tipo" name="tipo" [multiple]="false" [items]="type" [closeOnSelect]="true" [searchable]="false"
+          placeholder="{{ 'product.type' | translate }}" [(ngModel)]="product.tipo">
+        </ng-select>
+      </div>
+      <div class="col-md-6">
+        <label for="stock" class="form-label">{{
+          "product.stock" | translate
+          }}</label>
+        <input type="text" class="form-control" id="stock" name="stock" placeholder="{{ 'product.stock' | translate }}"
+          [(ngModel)]="product.stock" #stock="ngModel" [ngModelOptions]="{ standalone: true }" />
+      </div>
+      <div class="col-md-6">
+        <label for="stock" class="form-label">{{
+          "product.description" | translate
+          }}</label>
+        <input type="text" class="form-control" id="description" name="description"
+          placeholder="{{ 'product.description' | translate }}" [(ngModel)]="product.description" #description="ngModel"
+          [ngModelOptions]="{ standalone: true }" />
+      </div>
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <a routerLink=".." class="btn btn-outline-primary">
-        {{ "form.cancel" | translate }}
-      </a>
-      <button type="submit" class="btn btn-primary ml-2">
-        {{ "form.save" | translate }}
-      </button>
-    </div>
-  </form>
-</fieldset>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a routerLink=".." class="btn btn-outline-primary">
+          {{ "form.cancel" | translate }}
+        </a>
+        <button type="submit" class="btn btn-primary ml-2" >
+          {{ "form.save" | translate }}
+        </button>
+      </div>
+    </form>
+  </fieldset>

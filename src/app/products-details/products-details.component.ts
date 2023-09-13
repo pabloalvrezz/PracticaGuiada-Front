@@ -10,7 +10,6 @@ import { Prices } from '../_models/price';
 @Component({
   selector: 'app-products-details',
   templateUrl: './products-details.component.html',
-  styles: [],
 })
 export class ProductsDetailsComponent implements OnInit {
   /**
@@ -75,8 +74,6 @@ export class ProductsDetailsComponent implements OnInit {
 
     this.route.params.subscribe({
       next: (params: Params) => {
-        console.log('PAramss');
-        console.log(params);
         this.productId = params['id'];
         if (this.productId) {
           this.createMode = false;
@@ -85,7 +82,6 @@ export class ProductsDetailsComponent implements OnInit {
             .get(this.productId)
             .subscribe((product: Product) => {
               this.product = product;
-              console.log(this.product.description);
             });
         } else {
           this.createMode = true;
@@ -109,6 +105,9 @@ export class ProductsDetailsComponent implements OnInit {
         if (this.createMode) {
           this.router.navigate(['/main/product']);
         } else {
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
           this.router.navigate(['/main/product']);
           this.product = product;
         }
@@ -123,7 +122,7 @@ export class ProductsDetailsComponent implements OnInit {
       error: (error) => {
         setTimeout(function () {
           window.location.reload();
-        }, 600);
+        }, 1000);
         this.toastr.error(
           this.translate.instant(
             'toast.error-saving',
@@ -133,5 +132,4 @@ export class ProductsDetailsComponent implements OnInit {
       },
     });
   }
-
 }

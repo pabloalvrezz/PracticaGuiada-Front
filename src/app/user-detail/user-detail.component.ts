@@ -11,10 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html'
+  templateUrl: './user-detail.component.html',
 })
 export class UserDetailComponent implements OnInit {
-
   /**
    * Datos del usuarioa actual.
    */
@@ -37,11 +36,13 @@ export class UserDetailComponent implements OnInit {
    */
   userRoles: Array<string> = [];
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private translate: TranslateService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    private userService: UserService) { }
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.userId = null;
@@ -54,11 +55,9 @@ export class UserDetailComponent implements OnInit {
         if (this.userId) {
           this.createMode = false;
 
-          this.userService.get(this.userId).subscribe(
-            ((user: User) => {
-              this.user = user;
-            })
-          );
+          this.userService.get(this.userId).subscribe((user: User) => {
+            this.user = user;
+          });
         } else {
           this.createMode = true;
           this.user.credentialsNonExpired = true;
@@ -66,7 +65,7 @@ export class UserDetailComponent implements OnInit {
           this.user.accountNonLocked = true;
           this.user.accountNonExpired = true;
         }
-      }
+      },
     });
   }
 
@@ -78,7 +77,6 @@ export class UserDetailComponent implements OnInit {
 
     if (this.createMode) {
       observable = this.userService.save(this.user);
-
     } else {
       observable = this.userService.update(this.user);
     }
@@ -91,14 +89,24 @@ export class UserDetailComponent implements OnInit {
           this.user = user;
         }
 
-        this.toastr.success(this.translate.instant('toast.success-saving', this.translate.instant('toast.success')));
+        this.toastr.success(
+          this.translate.instant(
+            'toast.success-saving',
+            this.translate.instant('toast.success')
+          )
+        );
       },
       error: (error) => {
+        this.toastr.error(
+          this.translate.instant(
+            'toast.error-saving',
+            this.translate.instant('toast.error')
+          )
+        );
         setTimeout(function () {
           window.location.reload();
         }, 600);
-        this.toastr.error(this.translate.instant('toast.error-saving', this.translate.instant('toast.error')));
-      }
+      },
     });
   }
 }

@@ -3,7 +3,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HttpClient,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { NgProgressModule } from 'ngx-progressbar';
@@ -30,7 +34,8 @@ import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { PricesComponent } from './prices/prices.component';
 import { PricesDetailsComponent } from './prices-details/prices-details.component';
-import { SearcherComponent } from './searcher/searcher.component'
+import { SearcherComponent } from './searcher/searcher.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 // -------------- Guards --------------
 // import { AuthGuard } from './_guards/auth.guard';
@@ -42,6 +47,7 @@ import { ProductsDetailsComponent } from './products-details/products-details.co
 import { TokenizedInterceptor } from './_interceptors/tokenized-interceptor';
 import { SearcherDetailsComponent } from './searcher_details/searcher-details.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,6 +65,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     PricesDetailsComponent,
     SearcherComponent,
     SearcherDetailsComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,9 +76,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
     }),
     ToastrModule.forRoot(),
     PaginationModule.forRoot(),
@@ -90,17 +97,22 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenizedInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: OAuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
