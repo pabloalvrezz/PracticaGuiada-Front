@@ -86,7 +86,7 @@
           {{
           product.activePrice === 0
           ? "Todavía no existe precio"
-          : product.activePrice + '$'
+          : product.activePrice | currency: 'USD'
           }}
         </td>
         <td headers="tableActions" class="actions">

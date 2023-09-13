@@ -37,7 +37,7 @@
       <tr *ngFor="let price of searchResult">
         <th>{{ price.startDate }}</th>
         <th>{{ price.endDate }}</th>
-        <th>{{ price.cuantity }}</th>
+        <th>{{ price.cuantity | currency: 'USD' }}</th>
         <th>
          {{price.product?.description}}
         </th>

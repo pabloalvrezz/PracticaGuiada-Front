@@ -67,7 +67,7 @@ export class PricesDetailsComponent extends PaginatedSearchComponent<Product> im
     this.route.params.subscribe({
       next: (params: Params) => {
         this.id = params['id']
-
+        
         // en el caso de que exista id significa que el usuario quiere editar el producto
         if (this.id) {
           this.createMode = false
@@ -75,13 +75,14 @@ export class PricesDetailsComponent extends PaginatedSearchComponent<Product> im
           this.priceService.get(this.id).subscribe(
             ((price: Prices) => {
               this.price = price;
+              this.price.cuantity.toFixed(2)
             })
-          );
+            );
+          }
+          else {
+            this.createMode = true;
+          }
         }
-        else {
-          this.createMode = true;
-        }
-      }
     })
   }
 
