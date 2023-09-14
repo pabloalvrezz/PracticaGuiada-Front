@@ -15,6 +15,7 @@ import { SearcherComponent } from './searcher/searcher.component';
 import { SearcherDetailsComponent } from './searcher_details/searcher-details.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { EnabledGuard } from './_guards/enabled.guard';
+import { RegisterComponent } from './register/register.component';
 
 /**
  * Rutas securizadas
@@ -105,6 +106,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+
+  /**
+   * Register
+   */
+  {
+    path: 'register',
+    component: RegisterComponent
   },
 
   /**

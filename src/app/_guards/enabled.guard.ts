@@ -5,13 +5,12 @@ import {
   RouterStateSnapshot,
   UrlTree,
   Router,
-  ActivatedRoute,
 } from '@angular/router';
-import { Observable, catchError } from 'rxjs';
+
 import { LoginService } from '../_services/login.service';
+import { Observable} from 'rxjs';
 import { Product } from '../_models/product';
-import { HttpClient } from '@angular/common/http';
-import { Helper } from '../_helpers/utils';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  * Guard para controlar el acceso a las páginas seguras.
@@ -24,7 +23,7 @@ export class EnabledGuard implements CanActivate {
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private httpClient: HttpClient
+    private toastrService: ToastrService,
   ) {}
 
   canActivate(
@@ -35,27 +34,34 @@ export class EnabledGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let aux = Number.parseFloat(next.paramMap.get('id')!);
-
-    this.get(aux).subscribe((product) => {
-      if (this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR')) {
-        return true;
-      } else {
-        if (product.enabled) return true;
-        else {
-          this.router.navigate(['/search']);
-          return false;
-        }
-      }
-    });
-
     return true;
   }
 
   /**
-   * Obtiene los datos del producto
+   * Metodo que usaremos para comprobar el estado del producto y si
+   * el usuario es administrador o no
+   *
+   * @param producto
+   *
+   * @returns boolean
    */
-  get(id: number): Observable<Product> {
-    return this.httpClient.get<Product>(Helper.getUrl('/product/' + id));
+  checkProduct(product: Product): boolean {
+    // si es administrador siempre le dejaremos pasar
+    if (this.loginService.getCurrentUser()?.roles.includes('ADMINISTRATOR'))
+    return true;
+    // en caso de que no lo sea comprobaremos si el producto esta habilitado y que tenga stock
+    else {
+      if (product.enabled && product.stock > 0) {
+        return true;
+      } 
+      // en caso de que no este no le dejaremos pasar
+      else {
+        this.toastrService.success(
+          'Producto añadido al carrito correctamente'
+        );
+        this.router.navigate(['/search']);
+        return false;
+      }
+    }
   }
 }

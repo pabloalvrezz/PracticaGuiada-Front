@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../_services/product.service';
 import { Product } from '../_models/product';
 import { Observable } from 'rxjs';
+import { EnabledGuard } from '../_guards/enabled.guard';
 
 @Component({
   selector: 'searcher-details',
@@ -27,29 +28,29 @@ export class SearcherDetailsComponent implements OnInit {
    */
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
     private toastrService: ToastrService,
-    private _route: ActivatedRoute
+    private guard: EnabledGuard
   ) {}
 
   ngOnInit() {
-    this.productId = +this._route.snapshot.paramMap.get('id')!;
-    this.description = '';
-    this.stock = 0;
-
     this.route.params.subscribe({
       next: (params: Params) => {
         this.productId = params['id'];
+        // en caso de que exista el id comprobamos que este habilitado
         if (this.productId) {
-          this.productService
-            .get(this.productId)
-            .subscribe((product: Product) => {
-              this.product = product;
-            });
-        } else {
-          console.log('Error');
+          this.productService.get(this.productId).subscribe(product =>{
+            this.product = product 
+            // en caso de que este habilitado el guard permitira el paso
+            this.guard.checkProduct(this.product) 
+          })
+
+
+          // if (this.guard.checkProduct(this.product)) {
+          //   this.product = this.guard.product;
+          //   console.log(this.guard.product)
+          // }
         }
       },
     });
@@ -67,7 +68,9 @@ export class SearcherDetailsComponent implements OnInit {
     observable.subscribe({
       next: () => {
         if (this.product.stock === 0) {
-          this.toastrService.error('El producto seleccionado se ha quedado sin stock');
+          this.toastrService.error(
+            'El producto seleccionado se ha quedado sin stock'
+          );
         } else {
           this.toastrService.success(
             'Producto añadido al carrito correctamente'

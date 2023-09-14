@@ -46,9 +46,10 @@
       <button class="btn btn-primary">
         {{ "login.form.submit" | translate }}
       </button>
-      <button class="btn btn-outline-secondary ml-2">
+      <button class="btn btn-outline-secondary ml-2" [routerLink]="['/search']">
         {{ "login.form.cancel" | translate }}
       </button>
+      <p class="h6" [routerLink]="['/register']">¿No tienes cuenta?</p>
     </form>
   </div>
 </div>

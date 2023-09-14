@@ -49,11 +49,13 @@ import { SearcherDetailsComponent } from './searcher_details/searcher-details.co
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { EnabledGuard } from './_guards/enabled.guard';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     UserComponent,
     UserDetailComponent,
     MainComponent,

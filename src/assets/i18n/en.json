@@ -44,7 +44,9 @@
         "form" : {
             "user" : "User",
             "password" : "Password",
-            "submit" : "Log in"
+            "submit" : "Log in",
+            "countNo": "You do not have an account?",
+            "countYes": "Did you have account?"
         },
         "error": {
             "invalid": "Invalid credentials",

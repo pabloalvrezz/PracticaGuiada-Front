@@ -17,7 +17,7 @@
             d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
         </svg></button>
       <h6 *ngIf="this.loginService.isLoggedIn()">{{"search.welcome" | translate}}
-        {{this.loginService.getCurrentUser()?.name}}</h6>
+        {{this.loginService.getCurrentUser()?.username}}</h6>
     </div>
     <div class="container-fluid col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end">
       <button *ngIf="statusChecked()" [routerLink]="['/main/home']" type="button"
@@ -38,7 +38,7 @@
           {{ "form.search-form" | translate }}
         </legend>
         <form class="row g-3" (ngSubmit)="f.form.valid && find()" #f="ngForm">
-          <div class="col-md-4">
+          <div class="col-md-3">
 
             <label (click)="sort('name')" for="name" class="form-label">{{
               "product.name" | translate
@@ -50,7 +50,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label (click)="sort('description')" for="description" class="form-label">{{
               "product.description" | translate
               }}</label>
@@ -62,7 +62,7 @@
               #name="ngModel" />
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label (click)="sort('tipo')" for="tipo" class="form-label">{{
               "product.type" | translate
               }}</label>
@@ -73,6 +73,19 @@
               <option *ngFor="let type of types" value="{{type}}">{{ type | translate }}</option>
             </select>
           </div>
+
+          <div class="col-md-3">
+            <label (click)="sort('stock')" for="description" class="form-label">{{
+              "product.stock" | translate
+              }}</label>
+
+            <em (click)="sort('stock')" class="float-right" [ngClass]="getSortIcon('stock')"></em>
+
+            <input type="text" class="form-control" name="stock"
+              placeholder="{{ 'product.stock' | translate }}" [(ngModel)]="findRequest.filter.stock"
+              #name="ngModel" />
+          </div>
+
 
 
           <div class="form-group ">

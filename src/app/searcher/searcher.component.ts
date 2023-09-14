@@ -65,7 +65,7 @@ export class SearcherComponent extends PaginatedSearchComponent<Product> {
   }
   protected override getDefaultOrder(): Order {
     return {
-      property: 'id',
+      property: 'stock',
       direction: Direction.DESC,
     };
   }

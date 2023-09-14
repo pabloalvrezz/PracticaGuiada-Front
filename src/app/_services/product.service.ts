@@ -30,7 +30,11 @@ export class ProductService extends AbstractService {
       findRequest.filter.description
     );
     parameters = Helper.addParam(parameters, 'tipo', findRequest.filter.tipo);
-    parameters = Helper.addParam(parameters, 'activePrice', findRequest.filter.activePrice);
+    parameters = Helper.addParam(
+      parameters,
+      'activePrice',
+      findRequest.filter.activePrice
+    );
     parameters = Helper.addParam(parameters, 'stock', findRequest.filter.stock);
 
     // Pagination params
@@ -52,9 +56,33 @@ export class ProductService extends AbstractService {
    * Realiza la consulta de productos que no tiene asignado ningun precio
    */
   findAvaible(findRequest: FindRequest): Observable<Page<Product>> {
+    // Filter params
+    let parameters = new HttpParams();
+    parameters = Helper.addParam(parameters, 'name', findRequest.filter.name);
+    parameters = Helper.addParam(
+      parameters,
+      'description',
+      findRequest.filter.description
+    );
+    parameters = Helper.addParam(parameters, 'tipo', findRequest.filter.tipo);
+    parameters = Helper.addParam(
+      parameters,
+      'activePrice',
+      findRequest.filter.activePrice
+    );
+
+    // Pagination params
+    parameters = Helper.addPaginationParams(
+      parameters,
+      findRequest.pageRequest
+    );
+    console.log("Parameters")
+    console.log(parameters)
     return this.httpClient
-      .get<Page<Product>>(Helper.getUrl('/product/searchActive'))
-      .pipe(catchError(this.handleError));
+    .get<Page<Product>>(Helper.getUrl('/product/searchActive'),{
+      params: parameters
+    })
+    .pipe(catchError(this.handleError));
   }
 
   /**
@@ -105,6 +133,4 @@ export class ProductService extends AbstractService {
       .get<Product>(Helper.getUrl('/product/' + id))
       .pipe(catchError(this.handleError));
   }
-  
-  
 }

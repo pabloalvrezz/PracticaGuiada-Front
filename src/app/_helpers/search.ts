@@ -277,6 +277,7 @@ export abstract class PaginatedSearchComponent<T> implements AfterContentInit {
       if (this.findRequest.pageRequest.direction === Direction.DESC) {
         this.findRequest.pageRequest.direction = Direction.ASC;
       } else {
+        
         this.findRequest.pageRequest.direction = Direction.DESC;
       }
     } else {

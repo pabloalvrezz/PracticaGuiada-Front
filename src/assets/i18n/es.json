@@ -44,8 +44,12 @@
         "form" : {
             "user" : "Usuario",
             "password" : "Contraseña",
+            "mail": "Correo electrónico",
             "submit" : "Acceder",
-            "cancel": "Cancelar"
+             "cancel": "Cancelar",
+            "register": "Registrarse",
+            "countNo": "¿No tienes cuenta?",
+            "countYes": "¿Ya tienes cuenta?"
         },
         "error": {
             "invalid": "Credenciales no válidas",
