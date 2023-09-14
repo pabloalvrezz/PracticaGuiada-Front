@@ -28,9 +28,6 @@ export class RegisterComponent implements OnInit {
     this.user.username = '';
     this.user.email = '';
     this.user.password = '';
-    this.registerService.register(this.user).subscribe(usuario => {
-      this.user = usuario
-    })
   }
 
   /**
