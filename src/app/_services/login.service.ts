@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { AbstractService } from '../_helpers/abstract';
 import { User } from '../_models/user';
 import { HttpClient } from '@angular/common/http';
+import { Product } from '../_models/product';
 
 /**
  * Servicio para la gestión del login.

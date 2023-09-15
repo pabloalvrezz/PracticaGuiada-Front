@@ -54,4 +54,10 @@ export class Product {
    * Usuarios que tienen el producto como favorito
    */
   users!: User
+
+  /**
+   * Variable que controla si el producto es favorito del usuario
+   * actual o no
+   */
+  isFav!: boolean
 }

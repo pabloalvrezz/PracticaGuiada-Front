@@ -261,7 +261,6 @@ export abstract class PaginatedSearchComponent<T> implements AfterContentInit {
         this.searchResult = page.content;
         page.uibPage = page.number + 1;
         this.resultObject = page;
-        console.log(this.searchResult)
       })
     );
   }

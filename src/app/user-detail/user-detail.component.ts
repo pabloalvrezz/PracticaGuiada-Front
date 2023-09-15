@@ -37,7 +37,7 @@ export class UserDetailComponent implements OnInit {
    */
   userRoles: Array<string> = [];
 
-  favourites!: Product[];
+  favourites: Array<Product>[] = [];
   
   constructor(
     private router: Router,
@@ -51,7 +51,7 @@ export class UserDetailComponent implements OnInit {
     this.userId = null;
     this.user = new User();
     this.userRoles = [];
-    this.favourites = [];
+    this.favourites = []
 
     this.route.params.subscribe({
       next: (params: Params) => {
@@ -59,9 +59,10 @@ export class UserDetailComponent implements OnInit {
         if (this.userId) {
           this.createMode = false;
           this.userService.get(this.userId).subscribe((user: User) => {
+            console.log(user)
             this.user = user;
             console.log("Son favoritos")
-            console.log(this.user.favourites)
+            console.log(user.favourites)
           });
         } else {
           this.createMode = true;

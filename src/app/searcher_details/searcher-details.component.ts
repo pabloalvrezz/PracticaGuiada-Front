@@ -45,12 +45,6 @@ export class SearcherDetailsComponent implements OnInit {
             // en caso de que este habilitado el guard permitira el paso
             this.guard.checkProduct(this.product) 
           })
-
-
-          // if (this.guard.checkProduct(this.product)) {
-          //   this.product = this.guard.product;
-          //   console.log(this.guard.product)
-          // }
         }
       },
     });

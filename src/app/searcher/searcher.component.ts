@@ -18,16 +18,21 @@ import {
 import { ProductService } from '../_services/product.service';
 import { LoginService } from '../_services/login.service';
 import { LoginComponent } from '../login/login.component';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'selector-name',
   templateUrl: 'searcher.component.html',
 })
-export class SearcherComponent extends PaginatedSearchComponent<Product> {
+export class SearcherComponent
+  extends PaginatedSearchComponent<Product>
+  implements OnInit
+{
   public showGoUpButton: boolean;
   public showScrollHeight = 400;
   public hideScrollHeight = 200;
   public isAdmin: boolean = false; // variable que controlara si el usuario es admin
+  public esFav: boolean = false; // variable que controlara si el producto es favorito del usuario actual
 
   // array de categorias de los productos
   public types: Array<string> = [
@@ -46,17 +51,31 @@ export class SearcherComponent extends PaginatedSearchComponent<Product> {
     translate: TranslateService,
     toastr: ToastrService,
     public loginService: LoginService,
-    public productService: ProductService
+    public productService: ProductService,
+    public userService: UserService
   ) {
     super(router, translate, toastr);
     this.actualPage = 1;
     this.showGoUpButton = false;
   }
+  // obtenemos el usuario actual
+  user = this.loginService.getCurrentUser();
+
+  ngOnInit(): void {
+    this.productService.findAvaible(this.findRequest).subscribe(products =>{
+      products.content.forEach(product =>{
+       this.loginService.getCurrentUser()?.favourites.forEach(fav =>{
+        console.log(fav)
+       })
+
+      })
+    })
+  }
 
   protected override findInternal(
     findRequest: FindRequest
   ): Observable<Page<Product>> {
-      return this.productService.findAvaible(findRequest);
+    return this.productService.findAvaible(findRequest);
   }
   protected override removeInternal(
     entity: Product
@@ -92,6 +111,16 @@ export class SearcherComponent extends PaginatedSearchComponent<Product> {
 
     if (this.isAdmin) return true;
     return false;
+  }
+
+  /**
+   * Metodo que usaremos para cambiar el estado del favorito
+   */
+  productFavChange(product: Product) {
+   
+    let savedUser = this.userService.addFavourites(product, this.user!.id);
+
+    savedUser.subscribe();
   }
 
   /**

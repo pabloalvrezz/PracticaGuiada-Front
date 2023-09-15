@@ -121,7 +121,6 @@ export class PricesDetailsComponent extends PaginatedSearchComponent<Product> im
       next: (price: Prices) => {
         if (this.createMode) {
           location.href = ('/main/prices')
-
         }
         else {
           location.href = ('/main/prices')

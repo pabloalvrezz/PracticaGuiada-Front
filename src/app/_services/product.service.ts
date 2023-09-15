@@ -74,8 +74,6 @@ export class ProductService extends AbstractService {
       parameters,
       findRequest.pageRequest
     );
-    console.log("Parameters")
-    console.log(parameters)
     return this.httpClient
     .get<Page<Product>>(Helper.getUrl('/product/searchActive'),{
       params: parameters

@@ -8,15 +8,15 @@ import { AbstractService } from '../_helpers/abstract';
 import { FindRequest, Page } from '../_helpers/search';
 import { Helper } from '../_helpers/utils';
 import { User } from '../_models/user';
+import { Product } from '../_models/product';
 
 /**
  * Servicio para la gestión de datos de usuario.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService extends AbstractService {
-
   constructor(private httpClient: HttpClient) {
     super();
   }
@@ -27,23 +27,27 @@ export class UserService extends AbstractService {
    * @returns Observable con el resultado de la consulta.
    */
   findUsers(findRequest: FindRequest): Observable<Page<User>> {
-
     // Filter params
     let parameters = new HttpParams();
     parameters = Helper.addParam(parameters, 'name', findRequest.filter.name);
     parameters = Helper.addParam(parameters, 'email', findRequest.filter.email);
-    parameters = Helper.addParam(parameters, 'enabled', findRequest.filter.enabled);
+    parameters = Helper.addParam(
+      parameters,
+      'enabled',
+      findRequest.filter.enabled
+    );
 
     // Pagination params
-    parameters = Helper.addPaginationParams(parameters, findRequest.pageRequest);
+    parameters = Helper.addPaginationParams(
+      parameters,
+      findRequest.pageRequest
+    );
 
     return this.httpClient
       .get<Page<User>>(Helper.getUrl('/user/search'), {
-        params: parameters
+        params: parameters,
       })
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -54,9 +58,7 @@ export class UserService extends AbstractService {
   get(id: string): Observable<User> {
     return this.httpClient
       .get<User>(Helper.getUrl('/user/' + id))
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -67,9 +69,7 @@ export class UserService extends AbstractService {
   save(user: User): Observable<User> {
     return this.httpClient
       .post<User>(Helper.getUrl('/user'), user)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -80,9 +80,18 @@ export class UserService extends AbstractService {
   update(user: User): Observable<User> {
     return this.httpClient
       .put<User>(Helper.getUrl('/user'), user)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
+   * Añade favoritos a cada usuario
+   * @returns Observable con los datos del usuario actual
+   */
+  addFavourites(product: Product, id: string): Observable<Product> {
+    console.log(product)
+    return this.httpClient
+      .put<Product>(Helper.getUrl('/product/favourite/' + id), product)
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -94,14 +103,18 @@ export class UserService extends AbstractService {
     let observable: Observable<any>;
 
     if (user.accountNonLocked) {
-      observable = this.httpClient.put(Helper.getUrl(`/user/${user.id}/disable`), null);
+      observable = this.httpClient.put(
+        Helper.getUrl(`/user/${user.id}/disable`),
+        null
+      );
     } else {
-      observable = this.httpClient.put(Helper.getUrl(`/user/${user.id}/enable`), null);
+      observable = this.httpClient.put(
+        Helper.getUrl(`/user/${user.id}/enable`),
+        null
+      );
     }
 
-    return observable.pipe(
-      catchError(this.handleError)
-    );
+    return observable.pipe(catchError(this.handleError));
   }
 
   /**
@@ -111,8 +124,6 @@ export class UserService extends AbstractService {
   getUserData(): Observable<User> {
     return this.httpClient
       .get<User>(Helper.getUrl('/user'))
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 }
