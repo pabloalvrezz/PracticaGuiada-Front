@@ -59,6 +59,7 @@
         "create" : "Create user",
         "selectRole" : "Select a role",
         "roles" : "Roles",
+        "favourites": "Favourites",
         "name": "Name",
         "email": "Email",
         "address": "Address",

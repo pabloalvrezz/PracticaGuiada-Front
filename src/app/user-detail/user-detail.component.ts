@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { Product } from '../_models/product';
 
 /**
  * Componente para mostrar el detalle y alta de usuarios.
@@ -36,6 +37,8 @@ export class UserDetailComponent implements OnInit {
    */
   userRoles: Array<string> = [];
 
+  favourites!: Product[];
+  
   constructor(
     private router: Router,
     private translate: TranslateService,
@@ -48,15 +51,17 @@ export class UserDetailComponent implements OnInit {
     this.userId = null;
     this.user = new User();
     this.userRoles = [];
+    this.favourites = [];
 
     this.route.params.subscribe({
       next: (params: Params) => {
         this.userId = params['id'];
         if (this.userId) {
           this.createMode = false;
-
           this.userService.get(this.userId).subscribe((user: User) => {
             this.user = user;
+            console.log("Son favoritos")
+            console.log(this.user.favourites)
           });
         } else {
           this.createMode = true;

@@ -27,7 +27,7 @@ export class SearcherComponent extends PaginatedSearchComponent<Product> {
   public showGoUpButton: boolean;
   public showScrollHeight = 400;
   public hideScrollHeight = 200;
-  public isAdmin: boolean = false; // variable que controalra si el usuario es admin
+  public isAdmin: boolean = false; // variable que controlara si el usuario es admin
 
   // array de categorias de los productos
   public types: Array<string> = [

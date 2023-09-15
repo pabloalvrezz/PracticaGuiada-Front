@@ -3,6 +3,7 @@
  */
 
 import { Prices } from "./price";
+import { User } from "./user";
 
 export enum Type{
   JUGUETE, FRUTAS, VERDURAS, DECORACION, ROPA
@@ -48,4 +49,9 @@ export class Product {
    * Tipo del producto
    */
   tipo!: Type 
+
+  /**
+   * Usuarios que tienen el producto como favorito
+   */
+  users!: User
 }

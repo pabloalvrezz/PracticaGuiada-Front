@@ -46,8 +46,9 @@
             "password" : "Contraseña",
             "mail": "Correo electrónico",
             "submit" : "Acceder",
-             "cancel": "Cancelar",
+            "cancel": "Cancelar",
             "register": "Registrarse",
+            "login": "Iniciar Sesión",
             "countNo": "¿No tienes cuenta?",
             "countYes": "¿Ya tienes cuenta?"
         },
@@ -62,6 +63,7 @@
         "create" : "Crear usuario",
         "selectRole" : "Seleccione un rol",
         "roles" : "Roles",
+        "favourites": "Favoritos",
         "name": "Nombre",
         "email": "Email",
         "address": "Dirección",

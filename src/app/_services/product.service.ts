@@ -42,9 +42,7 @@ export class ProductService extends AbstractService {
       parameters,
       findRequest.pageRequest
     );
-    console.log('Params');
-    console.log(parameters);
-
+      
     return this.httpClient
       .get<Page<Product>>(Helper.getUrl('/product/search'), {
         params: parameters,

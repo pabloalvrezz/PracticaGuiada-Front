@@ -9,17 +9,11 @@
         class="btn btn-outline-secondary">{{"search.logIn"
         | translate}}</button>
       <button *ngIf="this.loginService.isLoggedIn()" (click)="this.logOut()" type="button"
-        class="btn btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-          fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-          <path fill-rule="evenodd"
-            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-        </svg></button>
+        class="btn btn-outline-secondary">{{"search.logOut" | translate}}</button>
       <h6 *ngIf="this.loginService.isLoggedIn()">{{"search.welcome" | translate}}
-        {{this.loginService.getCurrentUser()?.username}}</h6>
+        {{this.loginService.getCurrentUser()?.name}}</h6>
     </div>
-    <div class="container-fluid col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end">
+    <div class="container-fluid col-lg-8 col-md-4 col-sm-6 d-flex justify-content-end ">
       <button *ngIf="statusChecked()" [routerLink]="['/main/home']" type="button"
         class="btn btn-outline-secondary">{{"search.backOffice" | translate}}</button>
     </div>
@@ -108,7 +102,7 @@
           <div class="p-4 border border-secondary">
             <h5> {{product.name}}</h5>
             <div class="mb-1">
-              <button *ngIf="product.enabled && product.stock >= 1" class="btn btn-outline-secondary"
+              <button *ngIf="product.enabled && product.stock >= 1 && product.activePrice" class="btn btn-outline-secondary"
                 [routerLink]="['../product/search/details', product.id]">{{"search.details" | translate}}</button>
               <button *ngIf="product.stock < 1 && product.enabled" type="button"
                 class="btn btn-danger">{{"search.outStock"
@@ -116,11 +110,14 @@
                 translate}}</button>
               <span *ngIf="!product.enabled" class="badge badge-danger">{{"search.disable" | translate}}</span>
             </div>
+            <button class="btn btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+              <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+            </svg></button>
           </div>
         </div>
       </div>
     </div>
-    <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2 mb-2"
+    <button  [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-danger ml-2 mb-2"
       (click)="scrollTop()">{{"search.button" | translate}} <svg xmlns="http://www.w3.org/2000/svg" width="16"
         height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
         <path fill-rule="evenodd"

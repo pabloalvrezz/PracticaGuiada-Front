@@ -1,3 +1,5 @@
+import { Product } from "./product";
+
 /**
  * Define los datos de un usuario.
  */
@@ -66,6 +68,11 @@ export class User {
    * Lista de roles.
    */
   roles!: string[];
+
+  /**
+   * Productos favoritos de cada usuario
+   */
+  favourites!: Product[]
 }
 
 /**
@@ -76,4 +83,5 @@ export class Authority {
    * Nombre del rol.
    */
   authority!: string;
+  
 }

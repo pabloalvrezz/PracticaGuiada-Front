@@ -7,35 +7,15 @@
     {{ "user.create-user-title" | translate }}
   </legend>
 
-  <form
-    class="row g-3"
-    name="form"
-    (ngSubmit)="f.form.valid && save()"
-    #f="ngForm"
-    autocomplete="false"
-    novalidate
-  >
+  <form class="row g-3" name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" autocomplete="false" novalidate>
     <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
     <input style="display: none" type="text" name="fakeusernameremembered" />
-    <input
-      style="display: none"
-      type="password"
-      name="fakepasswordremembered"
-    />
+    <input style="display: none" type="password" name="fakepasswordremembered" />
 
     <div class="col-md-8">
       <label for="name" class="form-label">{{ "user.name" | translate }}</label>
-      <input
-        type="text"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': f.submitted && !name.valid }"
-        id="name"
-        name="name"
-        required
-        placeholder="{{ 'user.name' | translate }}"
-        [(ngModel)]="user.name"
-        #name="ngModel"
-      />
+      <input type="text" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && !name.valid }" id="name"
+        name="name" required placeholder="{{ 'user.name' | translate }}" [(ngModel)]="user.name" #name="ngModel" />
       <div *ngIf="f.submitted && !name.valid" class="invalid-feedback">
         {{ "form.validation.required" | translate }}
       </div>
@@ -43,33 +23,18 @@
     <div class="col-md-4">
       <label for="email" class="form-label">{{
         "user.email" | translate
-      }}</label>
+        }}</label>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroupPrepend3">@</span>
         </div>
-        <input
-          type="email"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': f.submitted && !email.valid }"
-          id="email"
-          name="email"
-          required
-          placeholder="{{ 'user.email' | translate }}"
-          [(ngModel)]="user.email"
-          #email="ngModel"
-          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-        />
-        <div
-          *ngIf="f.submitted && !email.valid && email.errors?.['required']"
-          class="invalid-feedback"
-        >
+        <input type="email" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && !email.valid }" id="email"
+          name="email" required placeholder="{{ 'user.email' | translate }}" [(ngModel)]="user.email" #email="ngModel"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+        <div *ngIf="f.submitted && !email.valid && email.errors?.['required']" class="invalid-feedback">
           {{ "form.validation.required" | translate }}
         </div>
-        <div
-          *ngIf="f.submitted && !email.valid && email.errors?.['pattern']"
-          class="invalid-feedback"
-        >
+        <div *ngIf="f.submitted && !email.valid && email.errors?.['pattern']" class="invalid-feedback">
           {{ "form.validation.email" | translate }}
         </div>
       </div>
@@ -79,32 +44,27 @@
     <div class="col-md-6">
       <label for="password" class="form-label">{{
         "user.password" | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="password"
-        name="password"
-        placeholder="{{ 'user.password' | translate }}"
-        [(ngModel)]="user.password"
-      />
+        }}</label>
+      <input type="text" class="form-control" id="password" name="password"
+        placeholder="{{ 'user.password' | translate }}" [(ngModel)]="user.password" />
     </div>
     <div class="col-md-6">
       <label for="roles" class="form-label">{{
         "user.roles" | translate
-      }}</label>
-      <ng-select
-        id="roles"
-        name="roles"
-        [multiple]="true"
-        [items]="roles"
-        [closeOnSelect]="true"
-        [searchable]="false"
-        placeholder="{{ 'user.roles' | translate }}"
-        [(ngModel)]="user.roles"
-      >
+        }}</label>
+      <ng-select id="roles" name="roles" [multiple]="true" [items]="roles" [closeOnSelect]="true" [searchable]="false"
+        placeholder="{{ 'user.roles' | translate }}" [(ngModel)]="user.roles">
       </ng-select>
     </div>
+    <div class="col-md-6">
+      <label for="favourites" class="form-label">{{
+        "user.favourites" | translate
+        }}</label>
+        <ul class="list-group" *ngFor="let product of user.favourites">
+          <li class="list-group-item">{{product.name}}</li>
+        </ul>
+    </div>
+
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <a routerLink=".." class="btn btn-outline-secondary">
